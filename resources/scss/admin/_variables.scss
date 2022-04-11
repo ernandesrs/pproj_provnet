@@ -1,0 +1,38 @@
+$sidebar_width: 250px;
+$header_height: 40px;
+
+$primary: rgb(225, 95, 95);
+$primary_light: rgb(218, 122, 122);
+$primary_dark: rgb(206, 71, 71);
+
+$secondary: rgb(78, 78, 78);
+$secondary_light: rgb(105, 105, 105);
+$secondary_dark: rgb(70, 70, 70);
+
+$dark: rgb(78, 78, 78);
+$dark_light: rgb(105, 105, 105);
+$dark_dark: rgb(70, 70, 70);
+
+$light: rgb(245, 245, 245);
+$light_light: rgb(255, 255, 255);
+$light_dark: rgb(235, 235, 235);
+
+$custom-file-text: (
+  pt-BR: "Escolher",
+  en: "Browse",
+  es: "Elegir"
+);
+
+$theme-colors: (
+    "primary": $primary,
+    "primary_light": $primary_light,
+    "primary_dark": $primary_dark,
+
+    "secondary": $secondary,
+    "secondary_light": $secondary_light,
+    "secondary_dark": $secondary_dark,
+
+    "light": $light,
+    "light_light": $light_light,
+    "light_dark": $light_dark,
+);

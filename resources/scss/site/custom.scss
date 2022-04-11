@@ -1,0 +1,17 @@
+@import "./variables";
+
+@import "./../../../node_modules/bootstrap/scss/bootstrap";
+
+@import "./../../scss/global/scrollbar";
+
+@import "./../../scss/global/alert";
+
+@import "./body";
+
+@import "./header";
+
+@import "./main";
+
+@import "./footer";
+
+@import "./responsive";

@@ -1,0 +1,116 @@
+.sidebar {
+    display: none;
+    grid-area: sidebar;
+    width: 100%;
+    max-width: $sidebar_width;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    overflow: auto;
+    z-index: 999;
+    box-shadow: 0 0 12px -6px $secondary_light;
+
+    .sidebar-content {
+        background-color: $light;
+
+        .user-info {
+            .user-photo {
+                width: 100%;
+                height: 100%;
+                min-width: 50px;
+                min-height: 50px;
+                max-width: 50px;
+                max-height: 50px;
+
+                font-family: "Ubuntu", sans-serif;
+                font-weight: 600;
+                color: $white;
+            }
+
+            .user-name {
+                font-weight: 600;
+            }
+
+            .user-profile-link {
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+        }
+
+        .sidebar-elems {
+            background-color: $white;
+            border-radius: $spacer $spacer 0 0;
+            padding: $spacer 0 0 0;
+            border-top: 1px solid $light_dark;
+
+            .sidebar-elem {
+                background-color: $white;
+                padding: $spacer / 4 $spacer;
+
+                .title {
+                    padding: $spacer / 4 0;
+                    font-size: 1rem;
+                    font-weight: 600;
+                    color: $secondary;
+                    text-transform: uppercase;
+                    cursor: default;
+                }
+
+                .nav {
+                    .nav-link {
+                        border-left: 4px solid transparent;
+
+                        .icon {
+                            margin-right: $spacer / 3;
+                        }
+
+                        &:hover,
+                        &.nav-group-show {
+                            border-color: $primary_light;
+                        }
+
+                        &.active {
+                            background-color: $light;
+                            border-color: $primary_dark;
+                        }
+                    }
+
+                    .nav-group-toggler {
+                        display: flex;
+                        align-items: center;
+                        margin-right: 0;
+
+                        .nav-group-indicator {
+                            margin-left: auto;
+
+                            .icon {
+                                margin-right: 0;
+                            }
+                        }
+                    }
+
+                    .collapse {
+                        .nav {
+                            margin-left: $spacer;
+
+                            .nav-link {
+                                border-left: 4px solid $primary_light;
+
+                                &:hover {
+                                    border-color: $primary_light;
+                                }
+
+                                &.active {
+                                    background-color: $light;
+                                    border-color: $primary_dark;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,41 @@
+// font-family: 'Roboto', sans-serif;
+// font-family: 'Ubuntu', sans-serif;
+// font-family: 'Ubuntu Condensed', sans-serif;
+
+@font-face {
+    font-family: Ubuntu;
+    src: url("./../../fonts/Ubuntu/Ubuntu-Regular.ttf"), url("./../../fonts/Ubuntu/Ubuntu-Medium.ttf"), url("./../../fonts/Ubuntu/Ubuntu-Bold.ttf");
+}
+
+@font-face {
+    font-family: 'Ubuntu Condensed';
+    src: url("./../../fonts/Ubuntu_Condensed/UbuntuCondensed-Regular.ttf");
+}
+
+@import "./variables";
+
+@import "./../../../node_modules/bootstrap/scss/bootstrap";
+
+@import "./../../scss/global/scrollbar";
+
+@import "./../../scss/global/alert";
+
+@import "./../../scss/global/modal";
+
+@import "./animations";
+
+@import "./body";
+
+@import "./sidebar/sidebar";
+
+@import "./wrapp/wrapp";
+
+@import "./wrapp/header";
+
+@import "./wrapp/main";
+
+@import "./wrapp/main.section";
+
+@import "./wrapp/footer";
+
+@import "./responsive";

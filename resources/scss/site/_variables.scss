@@ -1,0 +1,27 @@
+$header_height: 70px;
+
+$primary: rgb(31, 127, 236);
+$primary_light: rgb(17, 107, 209);
+$primary_dark: rgb(31, 127, 236);
+
+$secondary: rgb(78, 78, 78);
+$secondary_light: rgb(90, 90, 90);
+$secondary_dark: rgb(70, 70, 70);
+
+$light: rgb(245, 245, 245);
+$light_light: rgb(255, 255, 255);
+$light_dark: rgb(235, 235, 235);
+
+$theme-colors: (
+    "primary": $primary,
+    "primary_light": $primary_light,
+    "primary_dark": $primary_dark,
+
+    "secondary": $secondary,
+    "secondary_light": $secondary_light,
+    "secondary_dark": $secondary_dark,
+
+    "light": $light,
+    "light_light": $light_light,
+    "light_dark": $light_dark,
+);

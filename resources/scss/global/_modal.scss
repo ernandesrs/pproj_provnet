@@ -1,0 +1,111 @@
+.modal {
+    .modal-content {
+        position: relative;
+    }
+
+    &.confirmation-modal {
+        .modal-header {
+            padding: $spacer / 2 $spacer 0 $spacer;
+            border-bottom: 0;
+
+            .modal-title {
+                font-size: 1rem;
+                font-weight: 600;
+                text-transform: uppercase;
+            }
+        }
+
+        .modal-body {
+            background-color: $white;
+        }
+
+        .modal-footer {
+            border-top: 0;
+            padding: 0 $spacer $spacer / 2 $spacer;
+
+            .btn-close {
+                border: 1px solid $light_dark;
+            }
+        }
+
+        /**
+         * success
+         */
+        &.success {
+            .modal-header {
+                .modal-title {
+                    color: $success;
+                }
+            }
+
+            .btn-confirm {
+                background-color: $success;
+                color: $white;
+            }
+        }
+
+        /**
+         * info
+         */
+        &.info {
+            .modal-header {
+                .modal-title {
+                    color: $info;
+                }
+            }
+
+            .btn-confirm {
+                background-color: $info;
+                color: $white;
+            }
+        }
+
+        /**
+         * warning
+         */
+        &.warning {
+            .modal-header {
+                .modal-title {
+                    color: $warning;
+                }
+            }
+
+            .btn-confirm {
+                background-color: $warning;
+                color: $white;
+            }
+        }
+
+        /**
+         * danger
+         */
+        &.danger {
+            .modal-header {
+                .modal-title {
+                    color: $danger;
+                }
+            }
+
+            .btn-confirm {
+                background-color: $danger;
+                color: $white;
+            }
+        }
+
+        /**
+         * default
+         */
+        &.default {
+            .modal-header {
+                .modal-title {
+                    color: $secondary;
+                }
+            }
+
+            .btn-confirm {
+                background-color: $secondary;
+                color: $white;
+            }
+        }
+    }
+}

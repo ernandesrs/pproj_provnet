@@ -1,0 +1,35 @@
+.wrapp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(180deg, $primary, rgb($primary, 0.8));
+    height: 100vh;
+    position: relative;
+    z-index: 1;
+
+    &::after {
+        content: "";
+        background-color: $light;
+        width: 100%;
+        height: 50vh;
+        position: absolute;
+        z-index: 2;
+        left: 0;
+        bottom: 0;
+    }
+
+    .login-box, .register-box, .verify-box, .confirm-box, .email-box, .reset-box {
+        background-color: $white;
+        width: 100%;
+        position: relative;
+        z-index: 3;
+    }
+
+    .login-box {
+        max-width: 425px;
+    }
+
+    .register-box, .verify-box, .confirm-box, .email-box, .reset-box {
+        max-width: 625px;
+    }
+}

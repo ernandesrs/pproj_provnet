@@ -1,0 +1,18 @@
+{
+    "/css/boxicons.css": "/css/boxicons.css",
+    "/css/bootstrap-icons.css": "/css/bootstrap-icons.css",
+    "/css/auth/custom.css": "/css/auth/custom.css",
+    "/css/site/custom.css": "/css/site/custom.css",
+    "/css/admin/custom.css": "/css/admin/custom.css",
+    "/js/jquery.min.js": "/js/jquery.min.js",
+    "/js/jquery-ui.min.js": "/js/jquery-ui.min.js",
+    "/js/bootstrap.bundle.min.js": "/js/bootstrap.bundle.min.js",
+    "/js/plugins/messages.js": "/js/plugins/messages.js",
+    "/js/plugins/buttons.js": "/js/plugins/buttons.js",
+    "/js/plugins/backdrops.js": "/js/plugins/backdrops.js",
+    "/js/plugins/form-errors.js": "/js/plugins/form-errors.js",
+    "/js/scripts.js": "/js/scripts.js",
+    "/js/admin/scripts.js": "/js/admin/scripts.js",
+    "/js/site/scripts.js": "/js/site/scripts.js",
+    "/js/auth/scripts.js": "/js/auth/scripts.js"
+}

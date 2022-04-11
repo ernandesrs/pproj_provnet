@@ -1,0 +1,6 @@
+.main {
+    background-color: $light;
+    min-height: calc(100vh - $header_height);
+    position: relative;
+    z-index: 0;
+}

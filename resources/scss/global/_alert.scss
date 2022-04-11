@@ -1,0 +1,35 @@
+.message-area {
+    position: relative;
+
+    .alert {
+        display: none;
+    }
+}
+
+.alert {
+    border-bottom-width: $spacer / 2.5;
+
+    .alert-heading {
+        text-transform: uppercase;
+        font-size: 1rem;
+        font-weight: 600;
+    }
+
+    .alert-message {
+        font-size: 0.875rem;
+        font-weight: 600;
+    }
+
+    .close {
+        padding: $spacer / 3 $spacer / 1.5;
+    }
+
+    &.fixed-alert {
+        width: 100%;
+        max-width: 375px;
+        position: fixed;
+        bottom: $spacer;
+        right: $spacer;
+        z-index: 9999;
+    }
+}
