@@ -8,6 +8,7 @@ use App\Http\Controllers\Site\BlogController as SiteBlogController;
 
 use App\Http\Controllers\Admin\IndexController as AdminIndexController;
 use App\Http\Controllers\Admin\BlogController as AdminBlogController;
+use App\Http\Controllers\Admin\BannerController as AdminBannerController;
 use App\Http\Controllers\Admin\GuideController as AdminGuideController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Auth\AccountController as AuthAccountController;
@@ -55,6 +56,18 @@ Route::prefix("panel")->group(function () {
     Route::post("/user/bans/{id}", [AdminUserController::class, "bans"])->name("admin.users.bans");
 
     /**
+     * Admin Banners Controller
+     */
+    Route::get("/banners", [AdminBannerController::class, "index"])->name("admin.banners.index");
+    Route::post("/banners/filter", [AdminBannerController::class, "filter"])->name("admin.banners.filter");
+    Route::get("/banner/new", [AdminBannerController::class, "create"])->name("admin.banners.create");
+    Route::post("/banner/new", [AdminBannerController::class, "store"])->name("admin.banners.store");
+    Route::get("/banner/show/{banner}", [AdminBannerController::class, "show"])->name("admin.banners.show");
+    Route::get("/banner/edit/{banner}", [AdminBannerController::class, "edit"])->name("admin.banners.edit");
+    Route::post("/banner/update/{banner}", [AdminBannerController::class, "update"])->name("admin.banners.update");
+    Route::post("/banner/destroy/{banner}", [AdminBannerController::class, "destroy"])->name("admin.banners.destroy");
+
+    /**
      * Admin Blog Controller
      */
     Route::get("/blog/categories", [AdminBlogController::class, "categories"])->name("admin.blog.categories");
@@ -76,7 +89,7 @@ Route::get("/email/verificar", function (\Illuminate\Http\Request  $request) {
         ]), __("auth.emailVerifiedTitle"))->flash();
         return redirect()->route("site.index");
     }
-    
+
     return view("auth.verify");
 })->middleware("auth")->name("verification.notice");
 

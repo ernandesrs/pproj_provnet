@@ -17,6 +17,10 @@ return [
     "link" => [
         "linkExternal" => "bi bi-box-arrow-up-right",
     ],
+    "plus" => [
+        "plus" => "bi bi-plus",
+        "plusLg" => "bi bi-plus-lg",
+    ],
     "gear" => [
         "gear" => "bi bi-gear",
         "fill" => "bi bi-gear-fill",
@@ -41,11 +45,11 @@ return [
         "menu" => "bi bi-list",
     ],
     "list" => [
-        "list"=> "bi bi-list",
-        "listCheck"=> "bi bi-list-check",
-        "listStars"=> "bi bi-list-stars",
-        "listNested"=> "bi bi-list-nested",
-        "listUl"=> "bi bi-list-ul",
+        "list" => "bi bi-list",
+        "listCheck" => "bi bi-list-check",
+        "listStars" => "bi bi-list-stars",
+        "listNested" => "bi bi-list-nested",
+        "listUl" => "bi bi-list-ul",
     ],
     "spinner" => [
         "spinner" => "bi bi-arrow-clockwise",

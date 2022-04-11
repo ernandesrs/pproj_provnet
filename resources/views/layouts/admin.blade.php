@@ -173,11 +173,20 @@
         <main class="main h-100 py-3 px-2">
             <div class="container-fluid">
                 @if (Route::currentRouteName() != 'admin.index')
-                    <div class="py-2 d-flex">
+                    <div class="py-2 d-flex align-items-center">
                         <h1 class="mb-0 h4">
                             {{ icon('grid.grid3x3') }}
                             {{ $seo->title }}
                         </h1>
+
+                        @if ($ac = $actions ?? null)
+                            <div class="pl-4">
+                                @if ($ac->new ?? false)
+                                    <a class="btn btn-sm btn-success" href="{{ $ac->new->url }}"
+                                        title="Novo">{{ icon('plus.plusLg') }} {{ $ac->new->text ?? 'Novo' }}</a>
+                                @endif
+                            </div>
+                        @endif
                     </div>
                 @endif
 

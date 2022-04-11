@@ -26,9 +26,16 @@ return [
             ],
         ],
         'site' => [
-            'text' => 'Site',
+            'text' => 'Site(' . config("app.name") . ')',
             'items' => [
-                0 => [
+                [
+                    'text' => 'Banners',
+                    'route' => 'admin.banners.index',
+                    'targetBlank' => false,
+                    'activeIn' => ['admin.banners.index', 'admin.banners.show', 'admin.banners.edit', 'admin.banners.create'],
+                    'icon' => 'collection.collection',
+                ],
+                [
                     'text' => 'Blog',
                     'group' => 'blog',
                     'icon' => 'page.page',
@@ -56,27 +63,13 @@ return [
                         ],
                     ]
                 ],
-                1 => [
+                [
                     'text' => 'Páginas',
                     'route' => 'admin.pages',
                     'targetBlank' => false,
                     'activeIn' => ['admin.pages'],
                     'icon' => 'page.blog',
-                ],
-                2 => [
-                    'text' => 'FAQ',
-                    'route' => 'admin.faq',
-                    'targetBlank' => false,
-                    'activeIn' => ['admin.faq'],
-                    'icon' => 'info.questionCircle',
-                ],
-                3 => [
-                    'text' => 'Configurações',
-                    'route' => '',
-                    'targetBlank' => false,
-                    'activeIn' => [''],
-                    'icon' => 'gear.gear',
-                ],
+                ]
             ],
         ],
         'app' => [
