@@ -1,5 +1,117 @@
-.header {
-    height: $header_height;
-    position: relative;
-    z-index: 1;
+.header-wrapp {
+    /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */
+    background: radial-gradient(55.38% 172.89% at 76.01% 53.37%, rgba(247, 247, 247, 0) 0%, #f7f7f7 100%);
+
+    .header {
+        height: $header_height;
+        position: relative;
+        z-index: 1;
+
+        .navbar-brand {
+            img {
+                height: 45px;
+            }
+        }
+
+        .navbar-nav {
+            .nav-item {
+                .nav-link {
+                    font-size: 0.875rem;
+                    text-transform: uppercase;
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+
+    .banner {
+        height: calc(100vh - $header_height);
+
+        .banner-images {
+            text-align: center;
+            position: relative;
+
+            .img-fluid {
+                width: 100%;
+                max-width: 375px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .animated-banner-images {
+                .animation-background {
+                    position: absolute;
+                    top: 0;
+                    right: 15px;
+                    z-index: 1;
+
+                    // animation
+                    animation-name: backgroundAnimation;
+                    animation-iteration-count: infinite;
+                    animation-duration: 5s;
+                    animation-timing-function: linear;
+                    animation-delay: 1s;
+                }
+
+                .animation-main {
+                    position: relative;
+                    z-index: 2;
+
+                    // animation
+                    animation-name: mainAnimation;
+                    animation-iteration-count: infinite;
+                    animation-duration: 5s;
+                    animation-timing-function: linear;
+                    animation-delay: 1s;
+                }
+
+                .animation-last {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    z-index: 3;
+
+                    // animation
+                    animation-name: lastAnimation;
+                    animation-iteration-count: infinite;
+                    animation-duration: 5s;
+                    animation-timing-function: linear;
+                    animation-delay: 1s;
+                }
+            }
+        }
+
+        .splide__track {
+            background-color: transparent;
+        }
+
+        .splide__pagination {
+            background-color: transparent;
+
+            .splide__pagination__page {
+                width: 25px;
+                height: 6px;
+                background-color: $light_dark;
+                border-radius: 0;
+                
+                &.is-active {
+                    background-color: $secondary_dark;
+                }
+            }
+        }
+
+        .title {
+            font-family: "Asap Condensed", sans-serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            color: $dark_dark;
+        }
+
+        .description {
+            font-family: "Ubuntu", sans-serif;
+            font-weight: 500;
+            font-size: 1rem;
+        }
+    }
 }

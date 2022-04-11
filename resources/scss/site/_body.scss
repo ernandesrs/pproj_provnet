@@ -1,3 +1,13 @@
 body {
     background-color: transparent;
+    color: $dark;
+    overflow-x: hidden;
+
+    .btn {
+        border-radius: $border-radius;
+        padding-top: $spacer / 2.5;
+        padding-bottom: $spacer / 2.5;
+        padding-left: $spacer * 1.2;
+        padding-right: $spacer * 1.2;
+    }
 }

@@ -21,6 +21,7 @@ mix
     .scripts(['node_modules/jquery/dist/jquery.min.js'], 'public/js/jquery.min.js')
     .scripts(['node_modules/jquery-ui-dist/jquery-ui.min.js'], 'public/js/jquery-ui.min.js')
     .scripts(['node_modules/bootstrap/dist/js/bootstrap.bundle.min.js'], 'public/js/bootstrap.bundle.min.js')
+    .scripts(['node_modules/@splidejs/splide/dist/js/splide.js'], 'public/js/splide.js')
 
     .scripts(['resources/js/global/plugins/messages.js'], 'public/js/plugins/messages.js')
     .scripts(['resources/js/global/plugins/buttons.js'], 'public/js/plugins/buttons.js')
@@ -31,6 +32,7 @@ mix
     /* global: css */
     .css('node_modules/bootstrap-icons/font/bootstrap-icons.css', 'public/css')
     .css('node_modules/boxicons/css/boxicons.css', 'public/css')
+    .css('node_modules/@splidejs/splide/dist/css/splide.min.css', 'public/css')
 
 
     /* admin: js */

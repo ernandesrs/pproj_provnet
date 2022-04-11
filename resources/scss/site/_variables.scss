@@ -1,16 +1,24 @@
+// font-family: 'Asap Condensed', sans-serif;
+// font-family: 'Ubuntu', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Asap+Condensed:wght@400;500;700&family=Ubuntu:wght@400;500;700&display=swap');
+
 $header_height: 70px;
 
-$primary: rgb(31, 127, 236);
-$primary_light: rgb(17, 107, 209);
-$primary_dark: rgb(31, 127, 236);
+$primary: #35C94C;
+$primary_light: #55DE6A;
+$primary_dark: #3AB14D;
 
-$secondary: rgb(78, 78, 78);
-$secondary_light: rgb(90, 90, 90);
-$secondary_dark: rgb(70, 70, 70);
+$secondary: #27B1DD;
+$secondary_light: #5ACDF1;
+$secondary_dark: #00A0D3;
 
-$light: rgb(245, 245, 245);
-$light_light: rgb(255, 255, 255);
-$light_dark: rgb(235, 235, 235);
+$light: #F1F1F1;
+$light_light: #F6F6F6;
+$light_dark: #E1E1E1;
+
+$dark: #737373;
+$dark_light: #8C8C8C;
+$dark_dark: #585858;
 
 $theme-colors: (
     "primary": $primary,
@@ -24,4 +32,12 @@ $theme-colors: (
     "light": $light,
     "light_light": $light_light,
     "light_dark": $light_dark,
+
+    "dark": $dark,
+    "dark_light": $dark_light,
+    "dark_dark": $dark_dark,
 );
+
+$border-radius:               .9rem !default;
+$border-radius-lg:            .3rem !default;
+$border-radius-sm:            .2rem !default;

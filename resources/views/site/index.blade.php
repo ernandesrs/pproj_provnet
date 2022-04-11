@@ -1,5 +1,9 @@
 @extends('layouts.site')
 
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('css/splide.min.css') }}">
+@endsection
+
 @section('content')
     <section id="contact" class="py-3 section contact-section">
         <div class="container">
@@ -61,4 +65,25 @@
             </div>
         </div>
     </section>
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('js/splide.js') }}"></script>
+    <script>
+        var splide = new Splide('.banners', {
+            type: 'loop',
+            autoplay: true,
+            perPage: 1,
+            arrows: false,
+            pagination: true,
+            speed: 400,
+            breakpoints: {
+                968: {
+                    arrows: true,
+                    pagination: false,
+                },
+            }
+        });
+        splide.mount();
+    </script>
 @endsection

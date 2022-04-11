@@ -21,78 +21,102 @@
 
 <body>
 
-    <header class="bg-light shadow-sm d-flex aling-items-center header">
-        <div class="container d-flex aling-items-center">
-            <nav class="navbar navbar-expand-md navbar-light w-100">
-                <a class="navbar-brand" href="{{ route('site.index') }}">
-                    {{ config('app.name') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#headerNavigation"
-                    aria-controls="headerNavigation" aria-expanded="false"
-                    aria-label="{{ __('site.header.buttonToggler.ariaLabel') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+    <div class="header-wrapp">
+        <header class="d-flex aling-items-center header">
+            <div class="container d-flex aling-items-center">
+                <nav class="navbar navbar-expand-lg navbar-light w-100">
+                    <a class="navbar-brand" href="{{ route('site.index') }}">
+                        <span class="sr-only">{{ config('app.name') }}</span>
+                        <img src="{{ asset('img/site/logo.png') }}" alt="{{ config('app.name') }}">
+                    </a>
 
-                <div class="collapse navbar-collapse" id="headerNavigation">
-                    <ul class="navbar-nav">
-                        <li class="nav-item {{ $appPath->route == 'site.index' ? 'active' : null }}">
-                            <a class="nav-link" href="{{ route('site.index') }}">
-                                {{ __('site.header.nav.home') }}
-                                <span class="sr-only">
-                                    {{ __('site.header.nav.currentPage') }}
-                                </span>
-                            </a>
-                        </li>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#headerNavigation"
+                        aria-controls="headerNavigation" aria-expanded="false"
+                        aria-label="{{ __('site.header.buttonToggler.ariaLabel') }}">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
 
-                        <li class="nav-item {{ $appPath->route == 'site.blog.index' ? 'active' : null }}">
-                            <a class="nav-link" href="{{ route('site.blog.index') }}">
-                                {{ __('site.header.nav.blog') }}
-                            </a>
-                        </li>
-
-                        <li class="nav-item {{ $appPath->route == 'site.about' ? 'active' : null }}">
-                            <a class="nav-link" href="{{ route('site.about') }}">
-                                {{ __('site.header.nav.about') }}
-                            </a>
-                        </li>
-                    </ul>
-
-                    <div class="ml-auto">
-                        @auth
-                            @if (Gate::allows('admin-panel-access'))
-                                <a class="btn btn-sm btn-primary" href="{{ route('admin.index') }}">
-                                    {{ icon("chart.chart") }}
-                                    {{ __('site.header.nav.panel') }}
+                    <div class="collapse navbar-collapse" id="headerNavigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item {{ $appPath->route == 'site.index' ? 'active' : null }}">
+                                <a class="nav-link" href="{{ route('site.index') }}">
+                                    {{ __('site.header.nav.home') }}
+                                    <span class="sr-only">
+                                        {{ __('site.header.nav.currentPage') }}
+                                    </span>
                                 </a>
-                            @endif
+                            </li>
 
-                            <a class="btn btn-sm btn-outline-primary" href="{{ route('logout') }}"
-                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                {{ icon("logout") }}
-                                {{ __('site.header.nav.logout') }}
-                            </a>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#plans">
+                                    {{ __('Planos') }}
+                                </a>
+                            </li>
 
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
-                        @else
-                            <a class="btn btn-sm btn-primary" href="{{ route('login') }}">
-                                {{ icon("login") }}
-                                {{ __('site.header.nav.login') }}
-                            </a>
-                            <a class="btn btn-sm btn-outline-primary" href="{{ route('register') }}">
-                                {{ icon("user.plus") }}
-                                {{ __('site.header.nav.register') }}
-                            </a>
-                        @endauth
+                            <li class="nav-item">
+                                <a class="nav-link" href="#cover">
+                                    {{ __('Cobertura') }}
+                                </a>
+                            </li>
 
+                            <li class="nav-item">
+                                <a class="nav-link" href="#cover">
+                                    {{ __('Contato') }}
+                                </a>
+                            </li>
+
+                            <li class="nav-item {{ $appPath->route == 'site.blog.index' ? 'active' : null }}">
+                                <a class="nav-link" href="{{ route('site.blog.index') }}">
+                                    {{ __('site.header.nav.blog') }}
+                                </a>
+                            </li>
+
+                            <li class="nav-item {{ $appPath->route == 'site.about' ? 'active' : null }}">
+                                <a class="nav-link" href="{{ route('site.about') }}">
+                                    {{ __('site.header.nav.about') }}
+                                </a>
+                            </li>
+                        </ul>
+
+                        <div class="ml-2">
+                            @auth
+                                @if (Gate::allows('admin-panel-access'))
+                                    <a class="btn btn-sm btn-primary" href="{{ route('admin.index') }}">
+                                        {{ icon('chart.chart') }}
+                                        {{ __('site.header.nav.panel') }}
+                                    </a>
+                                @endif
+
+                                <a class="btn btn-sm btn-outline-primary" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    {{ icon('logout') }}
+                                    {{ __('site.header.nav.logout') }}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                    class="d-none">
+                                    @csrf
+                                </form>
+                            @else
+                                <a class="btn btn-sm btn-primary" href="{{ route('login') }}">
+                                    {{ icon('login') }}
+                                    {{ __('site.header.nav.login') }}
+                                </a>
+                                <a class="btn btn-sm btn-outline-primary" href="#">
+                                    {{ __('site.header.nav.purchase') }}
+                                </a>
+                            @endauth
+
+                        </div>
                     </div>
-                </div>
-            </nav>
-        </div>
-    </header>
+                </nav>
+            </div>
+        </header>
 
-    <main class="main py-5">
+        @include('includes.site.banner', ['routesWBanner' => ['site.index']])
+    </div>
+
+    <main class="main">
         <div class="container">
             <div class="message-area jsMessageArea">
                 @include('includes.message')
@@ -116,7 +140,7 @@
     </footer>
 
     <div id="models" class="d-none">
-        @include("includes.message", ["isModel" => true])
+        @include('includes.message', ['isModel' => true])
         @yield("models")
 
     </div>

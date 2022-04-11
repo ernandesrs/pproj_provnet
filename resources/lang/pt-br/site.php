@@ -14,6 +14,7 @@ return [
             "register" => "Cadastrar",
             "logout" => "Sair",
             "currentPage" => "Página atual",
+            "purchase" => "Assinar"
         ]
     ],
     "index" => [
