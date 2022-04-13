@@ -284,7 +284,7 @@ class BannerController extends AdminController
 
         Message::warning("O elemento de banner foi excluído com sucesso!", "Excluído com sucesso!")->fixed()->flash();
         return response()->json([
-            "reload" => true
+            "redirect" => route("admin.banners.edit", ["banner" => $bannerElement->banners_id])
         ]);
     }
 

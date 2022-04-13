@@ -13,7 +13,7 @@ if ($bannerElement) {
         @php
             $elements = $banner->elements()->get();
         @endphp
-        <section class="section">
+        <section class="section mb-3">
             {{-- botões --}}
             <div class="d-flex align-items-center mb-3 py-3 border-bottom">
                 <h2 class="h5 mb-0">
@@ -24,7 +24,7 @@ if ($bannerElement) {
                 </a>
                 <a class="ml-3 btn btn-danger btn-sm jsButtonConfirm" role="button" data-type="danger"
                     data-title="Exclusão de banner!"
-                    data-message="Você está excluindo definitivamente este banner e todos seus elementos e isso não pode ser desfeito! Continuar?"
+                    data-message="Você está excluindo definitivamente o banner '<strong>{{ $banner->name }}</strong>' e todos seus elementos e isso não pode ser desfeito! Continuar?"
                     data-action="{{ route('admin.banners.destroy', ['banner' => $banner->id]) }}">
                     {{ icon('trash') }} {{ __('Excluir') }}
                 </a>
@@ -84,7 +84,7 @@ if ($bannerElement) {
                                                 </a>
                                                 <a class="btn btn-sm btn-danger jsButtonConfirm" data-type="danger"
                                                     data-title="{{ __('Exclusão de elemento de banner!') }}"
-                                                    data-message="{{ __('Você está excluindo um elemento de um banner e isto não pode ser desfeito! Continuar?') }}"
+                                                    data-message="Você está excluindo o elemento de banner '<strong>{{ $element->title }}</strong>' e isto não pode ser desfeito! Continuar?"
                                                     data-action="{{ route('admin.banners.destroyElement', ['bannerElement' => $element->id]) }}">
                                                     {{ icon('trash') }} {{ __('Excluir') }}
                                                 </a>
@@ -200,8 +200,8 @@ if ($bannerElement) {
                             @if ($bannerElement ?? false)
                                 <button class="btn btn-outline-danger jsButtonConfirm" type="submit" data-type="danger"
                                     data-title="Excluindo elemento de banner!"
-                                    data-message="Você está excluindo este elemento de banner e isso não pode ser desfeito. Continuar?"
-                                    data-target="{{ route('admin.banners.destroyElement', ['bannerElement' => $bannerElement->id]) }}">
+                                    data-message="Você está excluindo o elemento de banner '<strong>{{ $bannerElement->title }}</strong>' e isto não pode ser desfeito! Continuar?"
+                                    data-action="{{ route('admin.banners.destroyElement', ['bannerElement' => $bannerElement->id]) }}">
                                     {{ icon('trash') }} {{ __('Excluir') }}
                                 </button>
                                 <button class="btn btn-info" type="submit">
