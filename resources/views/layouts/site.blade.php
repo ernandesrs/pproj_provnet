@@ -113,7 +113,7 @@
             </div>
         </header>
 
-        @include('includes.site.banner', ['routesWBanner' => ['site.index']])
+        @include('includes.site.banner')
     </div>
 
     <main class="main">

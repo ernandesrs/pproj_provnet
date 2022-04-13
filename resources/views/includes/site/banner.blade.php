@@ -1,15 +1,25 @@
-@if (in_array(Route::currentRouteName(), $routesWBanner ?? ['site.index']))
-    <section id="banner" class="d-flex align-items-center banner">
-        <div class="container">
-            @if ($banners)
+    @php
+        $hasBanner = false;
+        if ($banner) {
+            $banners = $banner->elements()->get();
+        
+            if ($banners->count()) {
+                $hasBanner = true;
+            }
+        }
+    @endphp
+
+    @if ($hasBanner)
+        <section id="banner" class="d-flex align-items-center banner">
+            <div class="container">
                 <div class="banners splide">
                     <div class="splide__track">
                         <ul class="splide__list">
                             @foreach ($banners as $banner)
                                 @php
                                     $config = json_decode($banner->config);
-                                    $images = json_decode($config->images);
-                                    $buttons = json_decode($config->buttons);
+                                    $images = $config->images;
+                                    $buttons = $config->buttons ?? [];
                                 @endphp
                                 <li class="splide__slide d-flex align-items-center"
                                     data-splide-interval="{{ $config->interval ?? 5000 }}">
@@ -19,7 +29,7 @@
                                                 <div class="animated-banner-images">
                                                     @foreach ($images as $key => $image)
                                                         <img class="img-fluid animation-{{ $image->type }}"
-                                                            src="{{ asset($image->image) }}"
+                                                            src="{{ Storage::url($image->image) }}"
                                                             alt="{{ $banner->title . ' ' . ($key + 1) }}">
                                                     @endforeach
                                                 </div>
@@ -31,7 +41,7 @@
                                                 {{ $banner->title }}
                                             </h1>
                                             <p class="description">
-                                                {{ $banner->description }}
+                                                {{ $banner->subtitle }}
                                             </p>
                                             @if (count($buttons))
                                                 <div class="buttons">
@@ -51,7 +61,27 @@
 
                     <ul class="splide__pagination"></ul>
                 </div>
-            @endif
-        </div>
-    </section>
-@endif
+            </div>
+        </section>
+
+        @section('scripts')
+            <script src="{{ asset('js/splide.js') }}"></script>
+            <script>
+                var splide = new Splide('.banners', {
+                    type: 'loop',
+                    autoplay: true,
+                    perPage: 1,
+                    arrows: false,
+                    pagination: {{ $banners->count() > 1 ? 'true' : 'false' }},
+                    speed: 400,
+                    breakpoints: {
+                        968: {
+                            arrows: true,
+                            pagination: false,
+                        },
+                    }
+                });
+                splide.mount();
+            </script>
+        @endsection
+    @endif

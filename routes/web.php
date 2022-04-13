@@ -62,10 +62,19 @@ Route::prefix("panel")->group(function () {
     Route::post("/banners/filter", [AdminBannerController::class, "filter"])->name("admin.banners.filter");
     Route::get("/banner/new", [AdminBannerController::class, "create"])->name("admin.banners.create");
     Route::post("/banner/new", [AdminBannerController::class, "store"])->name("admin.banners.store");
-    Route::get("/banner/show/{banner}", [AdminBannerController::class, "show"])->name("admin.banners.show");
     Route::get("/banner/edit/{banner}", [AdminBannerController::class, "edit"])->name("admin.banners.edit");
-    Route::post("/banner/update/{banner}", [AdminBannerController::class, "update"])->name("admin.banners.update");
     Route::post("/banner/destroy/{banner}", [AdminBannerController::class, "destroy"])->name("admin.banners.destroy");
+
+    Route::post("/banner/{banner}/new-element", [AdminBannerController::class, "storeElement"])
+        ->name("admin.banners.storeElement");
+
+    Route::get("/banner/edit/{banner}/{bannerElement}", [AdminBannerController::class, "editElement"])
+        ->name("admin.banners.editElement");
+
+    Route::post("/banner/update-element/{bannerElement}", [AdminBannerController::class, "updateElement"])
+        ->name("admin.banners.updateElement");
+    Route::post("/banner/destroy-element/{bannerElement}", [AdminBannerController::class, "destroyElement"])
+        ->name("admin.banners.destroyElement");
 
     /**
      * Admin Blog Controller

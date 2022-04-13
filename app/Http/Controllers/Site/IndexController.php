@@ -4,21 +4,23 @@ namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
 use App\Mail\ContactMessageMail;
+use App\Models\Banner;
 use App\Models\ContactMessage;
 use App\Models\User;
 use App\Notifications\ContactMessageReceivedNotification;
 use App\Support\Message;
 use App\Support\Seo;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Validator;
 
 class IndexController extends Controller
 {
     public function index()
     {
+        $banner = Banner::where("route_name", Route::currentRouteName())->get()->first();
+
         return view("site.index", [
             "appPath" => $this->path(),
             "head" => (new Seo())->render(
@@ -26,76 +28,7 @@ class IndexController extends Controller
                 __("site.index.subtitle"),
                 route("site.index")
             ),
-            "banners" => [
-                0 => (object) [
-                    "title" => "Nós temos a internet que você precisa",
-                    "description" => "Temos internet via fibra ótica e rádio com planos residenciais e empresariais. Do que você precisa no momento?",
-                    "config" => json_encode([
-                        "interval" => 5000,
-                        "background" => null,
-                        "images" => json_encode([
-                            [
-                                "image" => "img/site/banner_ilustration_blob.svg",
-                                "type" => "background"
-                            ],
-                            [
-                                "image" => "img/site/banner_ilustration.png",
-                                "type" => "main"
-                            ]
-                        ]),
-                        "buttons" => json_encode([
-                            [
-                                "order" => 1,
-                                "text" => "Fibra",
-                                "link" => "#fiber",
-                                "target" => "_self",
-                                "style" => "btn-primary"
-                            ], [
-                                "order" => 2,
-                                "text" => "Rádio",
-                                "link" => "#radio",
-                                "target" => "_self",
-                                "style" => "btn-primary"
-                            ], [
-                                "order" => 3,
-                                "text" => "Conhecer",
-                                "link" => "#aboutus",
-                                "target" => "_self",
-                                "style" => "btn-outline-primary"
-                            ]
-                        ]),
-                    ]),
-                ],
-                1 => (object) [
-                    "title" => "Nossa internet via rádio chega onde a fibra não chega",
-                    "description" => "Temos internet via fibra ótica e rádio com planos residenciais e empresariais. Do que você precisa no momento?",
-                    "config" => json_encode([
-                        "interval" => 5000,
-                        "background" => null,
-                        "images" => json_encode([
-                            [
-                                "image" => "img/site/banner_ilustration.png",
-                                "type" => "main"
-                            ]
-                        ]),
-                        "buttons" => json_encode([
-                            [
-                                "order" => 1,
-                                "text" => "Ver planos via rádio",
-                                "link" => "#radio",
-                                "target" => "_self",
-                                "style" => "btn-outline-primary"
-                            ], [
-                                "order" => 3,
-                                "text" => "Conhecer",
-                                "link" => "#aboutus",
-                                "target" => "_self",
-                                "style" => "btn-primary"
-                            ]
-                        ]),
-                    ]),
-                ],
-            ]
+            "banner" => $banner
         ]);
     }
 
