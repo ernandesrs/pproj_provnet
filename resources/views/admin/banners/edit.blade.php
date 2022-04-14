@@ -104,8 +104,9 @@ if ($bannerElement) {
         </section>
     @endif
 
-    @if ($banner ?? false)
-        <section class="section">
+    {{-- formulários: editar e novo elemento de banner|novo banner --}}
+    <section class="section">
+        @if ($banner ?? false)
             {{-- título --}}
             <div class="d-flex align-items-center py-3">
                 <h2 class="h5 mb-0">
@@ -216,8 +217,51 @@ if ($bannerElement) {
                     </form>
                 </div>
             </div>
-        </section>
-    @endif
+        @else
+            <div class="row p-3 justify-content-center">
+                <div class="col-12 col-md-10 col-xl-8">
+                    <form class="jsFormSubmit" action="{{ route('admin.banners.store') }}" method="POST">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="jsMessageArea"></div>
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="page">Banner para:</label>
+                                    <select class="form-control" name="page" id="page">
+                                        <option value="none">Escolha uma página</option>
+                                        @foreach ($pages as $page)
+                                            <option value="{{ $page }}">{{ route($page) }}</option>
+                                        @endforeach
+                                    </select>
+                                    <small class="form-text text-muted">
+                                        {{ __('Uma página onde o banner será exibido.') }}
+                                    </small>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="name">Nome/Título:</label>
+                                    <input type="text" class="form-control" name="name" id="name">
+                                    <small class="form-text text-muted">
+                                        {{ __('Uma identificação para o banner que não será mostrada no front.') }}
+                                    </small>
+                                </div>
+                            </div>
+
+                            <div class="col-12 text-right">
+                                <button class="btn btn-success btn-sm" type="submit">
+                                    {{ icon('plus.plusLg') }} {{ __('Cadastrar') }}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        @endif
+    </section>
 @endsection
 
 @section('scripts')

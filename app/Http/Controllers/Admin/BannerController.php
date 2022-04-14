@@ -9,6 +9,7 @@ use App\Support\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class BannerController extends AdminController
 {
@@ -74,6 +75,8 @@ class BannerController extends AdminController
             "seo" => (object)[
                 "title" => "Novo banner"
             ],
+
+            "pages" => ["site.index", "site.about", "site.contact", "site.blog.index"]
         ]);
     }
 
@@ -85,7 +88,28 @@ class BannerController extends AdminController
      */
     public function store(Request $request)
     {
-        //
+        $validated = Validator::validate(
+            $request->only(["page", "name"]),
+            [
+                "page" => ["required", "unique:banners,route_name", Rule::in(["site.index", "site.about", "site.contact", "site.blog.index"])],
+                "name" => ["required"]
+            ],
+            [
+                "page.in" => __("Escolha uma página válida."),
+                "page.unique" => __("Já existe um banner para a página selecionada."),
+            ]
+        );
+
+        $banner = new Banner();
+        $banner->name = $validated["name"];
+        $banner->route_name = $validated["page"];
+        $banner->protection = "none";
+        $banner->save();
+
+        Message::success("Novo banner '<strong>{$banner->name}</strong>' cadastrado com sucesso! Agora adicione elementos ao banner.")->fixed()->flash();
+        return response()->json([
+            "redirect" => route("admin.banners.edit", ["banner" => $banner->id])
+        ]);
     }
 
     /**
@@ -107,7 +131,7 @@ class BannerController extends AdminController
          */
         foreach ($files as $file) {
             if ($file) {
-                $path = $file->store("public/images/banners/" . strtolower($banner->name) . "/" . date("Y-m"));
+                $path = $file->store("public/images/banners/" . date("Y-m"));
 
                 if (!$path) {
                     return;
