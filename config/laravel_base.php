@@ -32,7 +32,7 @@ return [
                     'text' => 'Banners',
                     'route' => 'admin.banners.index',
                     'targetBlank' => false,
-                    'activeIn' => ['admin.banners.index', 'admin.banners.show', 'admin.banners.edit', 'admin.banners.create'],
+                    'activeIn' => ['admin.banners.index', 'admin.banners.edit', 'admin.banners.create', 'admin.banners.editElement'],
                     'icon' => 'collection.collection',
                 ],
                 [

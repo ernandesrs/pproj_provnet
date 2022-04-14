@@ -199,17 +199,17 @@ if ($bannerElement) {
 
                         <div class="text-right py-3 py-md-3">
                             @if ($bannerElement ?? false)
-                                <button class="btn btn-outline-danger jsButtonConfirm" type="submit" data-type="danger"
+                                <button class="btn btn-sm btn-outline-danger jsButtonConfirm" type="submit" data-type="danger"
                                     data-title="Excluindo elemento de banner!"
                                     data-message="Você está excluindo o elemento de banner '<strong>{{ $bannerElement->title }}</strong>' e isto não pode ser desfeito! Continuar?"
                                     data-action="{{ route('admin.banners.destroyElement', ['bannerElement' => $bannerElement->id]) }}">
                                     {{ icon('trash') }} {{ __('Excluir') }}
                                 </button>
-                                <button class="btn btn-info" type="submit">
+                                <button class="btn btn-sm btn-info" type="submit">
                                     {{ icon('check.lg') }} {{ __('Atualizar') }}
                                 </button>
                             @else
-                                <button class="btn btn-success" type="submit">
+                                <button class="btn btn-sm btn-success" type="submit">
                                     {{ icon('plus.plusLg') }} {{ __('Cadastrar') }}
                                 </button>
                             @endif
