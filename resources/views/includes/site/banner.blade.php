@@ -19,7 +19,7 @@
                                 @php
                                     $config = json_decode($bannerElement->config);
                                     $images = (array) $config->images;
-                                    $buttons = (array) $config->buttons ?? [];
+                                    $buttons = empty($config->buttons) ? [] : (array) $config->buttons;
                                 @endphp
                                 <li class="splide__slide d-flex align-items-center"
                                     data-splide-interval="{{ $config->interval ?? 5000 }}">
@@ -46,7 +46,7 @@
                                             @if (count($buttons))
                                                 <div class="buttons">
                                                     @foreach ($buttons as $button)
-                                                        <a class="btn {{ $button->style . " " . $button->size }}"
+                                                        <a class="btn {{ $button->style . ' ' . $button->size }}"
                                                             href="{{ $button->link }}"
                                                             target="{{ $button->target }}">{{ $button->text }}</a>
                                                     @endforeach

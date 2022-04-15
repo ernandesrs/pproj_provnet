@@ -50,7 +50,7 @@ if ($bannerElement) {
                                 @php
                                     $config = json_decode($element->config);
                                     $images = $config->images;
-                                    $buttons = (array) $config->buttons ?? [];
+                                    $buttons = empty($config->buttons) ? [] : (array) $config->buttons;
                                 @endphp
                                 <div class="tab-pane fade py-3 {{ $key == 0 ? 'show active' : null }}"
                                     id="element{{ $key + 1 }}">
