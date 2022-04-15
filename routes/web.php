@@ -71,6 +71,8 @@ Route::prefix("panel")->group(function () {
     Route::get("/banner/edit/{banner}", [AdminBannerController::class, "edit"])->name("admin.banners.edit");
     Route::get("/banner/edit/{banner}/{bannerElement}", [AdminBannerController::class, "editElement"])
         ->name("admin.banners.editElement");
+    Route::post("/banner/edit/{bannerElement}/{buttonId}", [AdminBannerController::class, "editButton"])
+        ->name("admin.banners.editButton");
 
     Route::post("/banner/update-element/{bannerElement}", [AdminBannerController::class, "updateElement"])
         ->name("admin.banners.updateElement");

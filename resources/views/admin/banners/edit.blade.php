@@ -76,9 +76,9 @@ if ($bannerElement) {
                                             </div>
                                         </div>
 
-                                        <div class="col-12 col-md-11 col-lg-10 mt-3">
+                                        <div class="col-12 col-md-11 col-lg-10 mt-3 px-0">
                                             <span class="font-weight-medium">{{ __('Botões') }}:</span>
-                                            <div class="d-flex flex-wrap justify-content-center p-3 bg-white border">
+                                            <div class="d-flex flex-wrap justify-content-center py-3 px-0 bg-white border" style="position: relative;">
                                                 @if (count($buttons))
                                                     @foreach ($buttons as $button)
                                                         <div class="dropdown mx-2">
@@ -90,8 +90,8 @@ if ($bannerElement) {
                                                             </div>
                                                             <div class="dropdown-menu dropdown-menu-right">
                                                                 <div class="d-flex py-1 px-3">
-                                                                    <a
-                                                                        class="btn btn-sm btn-outline-info jsEditButtonModal">
+                                                                    <a class="btn btn-sm btn-outline-info jsEditButtonModal"
+                                                                        data-action="{{ route('admin.banners.editButton', ['bannerElement' => $element->id, 'buttonId' => $button->id]) }}">
                                                                         {{ icon('edit') }} {{ __('Editar') }}
                                                                     </a>
                                                                     <span class="mx-1"></span>
@@ -112,19 +112,21 @@ if ($bannerElement) {
                                                     </p>
                                                 @endif
                                             </div>
-                                            <a class="btn btn-sm btn-info jsAddButtonsModal mt-3"
-                                                data-action="{{ route('admin.banners.storeButton', ['bannerElement' => $element->id]) }}">
-                                                {{ icon('plus.plusLg') }} {{ __('Adicionar botões/links') }}
-                                            </a>
                                         </div>
                                     </div>
                                     <div class="py-3 text-right">
                                         <div class="row justify-content-center">
-                                            <div class="col-12 col-md-11 col-lg-10">
+                                            <div class="col-12 col-md-11 col-lg-10 d-flex px-0">
+                                                <a class="btn btn-sm btn-info jsAddButtonsModal"
+                                                    data-action="{{ route('admin.banners.storeButton', ['bannerElement' => $element->id]) }}">
+                                                    {{ icon('plus.plusLg') }} {{ __('Adicionar botões/links') }}
+                                                </a>
+                                                <span class="mx-auto"></span>
                                                 <a class="btn btn-sm btn-info"
                                                     href="{{ route('admin.banners.editElement', ['banner' => $banner->id, 'bannerElement' => $element->id]) }}">
                                                     {{ icon('edit') }} {{ __('Editar') }}
                                                 </a>
+                                                <span class="mx-2"></span>
                                                 <a class="btn btn-sm btn-danger jsButtonConfirm" data-type="danger"
                                                     data-title="{{ __('Exclusão de elemento de banner!') }}"
                                                     data-message="Você está excluindo o elemento de banner '<strong>{{ $element->title }}</strong>' e isto não pode ser desfeito! Continuar?"

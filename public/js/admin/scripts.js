@@ -260,8 +260,61 @@ $(function () {
 
         modal.find(".title").html("Adicionar novo botão");
         modal.find("form").attr("action", action);
-    
+
         modal.modal();
+    });
+
+    $(".jsEditButtonModal").on("click", function (e) {
+        let button = $(this);
+        let modal = $("#addBannerButtons");
+        let action = $(this).attr("data-action");
+
+        ajaxRequest(action, null, function () {
+            button.parents().eq(3).addLightBackdrop();
+        }, function (response) {
+            if (response.reload) {
+                window.location.reload();
+                return;
+            }
+
+            if (response.button) {
+                modal.find("#text").val(response.button.text);
+                modal.find("#link").val(response.button.link);
+
+                modal.find("#local option[value=" + response.button.local + "]").prop("selected", true);
+                modal.find("#style option[value=" + response.button.style + "]").prop("selected", true);
+                modal.find("#size option[value=" + response.button.size + "]").prop("selected", true);
+                modal.find("#target option[value=" + response.button.target + "]").prop("selected", true);
+
+                modal.find("#buttonPreview").text(response.button.text).removeClass("btn-primary").addClass(response.button.style).addClass(response.button.size);
+
+                modal.find(".title").html("Editar botão '<strong>" + response.button.text + "</strong>'");
+                modal.find("form").attr("action", response.action);
+                modal.find("button[type='submit']").removeClass("btn-success").addClass("btn-info").find(".text").text("Atualizar");
+
+                modal.modal();
+            }
+        }, function () {
+            button.parents().eq(3).removeBackdrop();
+        });
+    });
+
+    $("#addBannerButtons").on("hidden.bs.modal", function (e) {
+        $(this).find("#text").val("");
+        $(this).find("#link").val("");
+        $(this).find(".jsMessageArea").html("");
+        $(this).find("form").removeErrors();
+
+        $($(this).find("#local option")[0]).prop("selected", true);
+        $($(this).find("#style option")[0]).prop("selected", true);
+        $($(this).find("#size option")[0]).prop("selected", true);
+        $($(this).find("#target option")[0]).prop("selected", true);
+
+        $(this).find("#buttonPreview").text("Button Text").attr("class", "btn btn-primary");
+
+        $(this).find(".title").html("");
+        $(this).find("form").attr("action", "");
+        $(this).find("button[type='submit']").removeClass("btn-info").addClass("btn-success").find(".text").text("Cadastrar");
     });
 
 });

@@ -31,7 +31,7 @@
 
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
-                                        <label for="local">{{ __('Tipo de link') }}</label>
+                                        <label for="local">{{ __('Tipo de link') }}:</label>
                                         <select class="form-control" name="local" id="local">
                                             <option value="internal">Interno</option>
                                             <option value="https">Externo(https)</option>
@@ -86,8 +86,8 @@
                         </div>
 
                         <div class="col-12 pt-3 pb-2 text-center text-lg-right">
-                            <button class="btn btn-success btn-sm">
-                                {{ icon('plus.plusLg') }} {{ __('Cadastrar') }}
+                            <button class="btn btn-success btn-sm" type="submit">
+                                {{ icon('plus.plusLg') }} <span class="text">{{ __('Cadastrar') }}</span>
                             </button>
                         </div>
                     </div>

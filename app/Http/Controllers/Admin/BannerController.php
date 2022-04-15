@@ -251,6 +251,29 @@ class BannerController extends AdminController
     }
 
     /**
+     * @param BannerElement $bannerElement
+     * @param string $buttonId
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function editButton(BannerElement $bannerElement, string $buttonId)
+    {
+        $button = $bannerElement->getButton($buttonId);
+
+        if (!$button) {
+            Message::error(__("O botão não existe ou já pode ter sido excluído!"))->fixed()->flash();
+            return response()->json([
+                "reload" => true,
+            ]);
+        }
+
+        return response()->json([
+            "button" => $button,
+            "action" => route("admin.banners.updateButton", ["bannerElement" => $bannerElement->id, "buttonId" => $buttonId])
+        ]);
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -283,6 +306,41 @@ class BannerController extends AdminController
         Message::info("O elemento de banner foi atualizado com sucesso!")->fixed()->flash();
         return response()->json([
             "redirect" => route("admin.banners.edit", ["banner" => $bannerElement->banners_id])
+        ]);
+    }
+
+    /**
+     * @param BannerElement $bannerElement
+     * @param string $buttonId
+     * @return \Illuminate\Http\Response
+     */
+    public function updateButton(BannerElement $bannerElement, string $buttonId, Request $request)
+    {
+        if (!$bannerElement->hasButton($buttonId)) {
+            Message::error("O botão não existe ou pode ter sido excluído!")->fixed()->flash();
+            return response()->json([
+                "reload" => true
+            ]);
+        }
+
+        $validated = Validator::validate($request->only(["text", "link", "local", "style", "size", "target"]), [
+            "text" => ["required"],
+            "link" => ["string"],
+            "local" => Rule::in(["internal", "https", "http"]),
+            "style" => Rule::in(['btn-primary', 'btn-outline-primary', 'btn-secondary', 'btn-outline-secondary', 'btn-link']),
+            "size" => Rule::in(['btn', 'btn-sm', 'btn-lg']),
+            "target" => Rule::in(['_self', '_blank'])
+        ]);
+
+        if (!$bannerElement->updateButton($validated, $buttonId)) {
+            return response()->json([
+                "message" => Message::error("Houve um erro ao tentar atualizar o botão.")->get()
+            ]);
+        }
+
+        Message::info("O botão foi atualizado com sucesso!")->fixed()->flash();
+        return response()->json([
+            "reload"=>true,
         ]);
     }
 
