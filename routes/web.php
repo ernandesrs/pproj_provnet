@@ -60,21 +60,28 @@ Route::prefix("panel")->group(function () {
      */
     Route::get("/banners", [AdminBannerController::class, "index"])->name("admin.banners.index");
     Route::post("/banners/filter", [AdminBannerController::class, "filter"])->name("admin.banners.filter");
+
     Route::get("/banner/new", [AdminBannerController::class, "create"])->name("admin.banners.create");
     Route::post("/banner/new", [AdminBannerController::class, "store"])->name("admin.banners.store");
-    Route::get("/banner/edit/{banner}", [AdminBannerController::class, "edit"])->name("admin.banners.edit");
-    Route::post("/banner/destroy/{banner}", [AdminBannerController::class, "destroy"])->name("admin.banners.destroy");
-
     Route::post("/banner/{banner}/new-element", [AdminBannerController::class, "storeElement"])
         ->name("admin.banners.storeElement");
+    Route::post('/banner/{bannerElement}/new-button', [AdminBannerController::class, "storeButton"])
+        ->name("admin.banners.storeButton");
 
+    Route::get("/banner/edit/{banner}", [AdminBannerController::class, "edit"])->name("admin.banners.edit");
     Route::get("/banner/edit/{banner}/{bannerElement}", [AdminBannerController::class, "editElement"])
         ->name("admin.banners.editElement");
 
     Route::post("/banner/update-element/{bannerElement}", [AdminBannerController::class, "updateElement"])
         ->name("admin.banners.updateElement");
+    Route::post('/banner/update-button/{bannerElement}', [AdminBannerController::class, "updateButton"])
+        ->name("admin.banners.updateButton");
+
+    Route::post("/banner/destroy/{banner}", [AdminBannerController::class, "destroy"])->name("admin.banners.destroy");
     Route::post("/banner/destroy-element/{bannerElement}", [AdminBannerController::class, "destroyElement"])
         ->name("admin.banners.destroyElement");
+    Route::post("/banner/destroy-button/{bannerElement}", [AdminBannerController::class, "destroyButton"])
+        ->name("admin.banners.destroyButton");
 
     /**
      * Admin Blog Controller

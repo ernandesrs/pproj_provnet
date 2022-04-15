@@ -254,5 +254,15 @@ $(function () {
         });
     });
 
+    $(".jsAddButtonsModal").on("click", function (e) {
+        let modal = $("#addBannerButtons");
+        let action = $(this).attr("data-action");
+
+        modal.find(".title").html("Adicionar novo botão");
+        modal.find("form").attr("action", action);
+    
+        modal.modal();
+    });
+
 });
 

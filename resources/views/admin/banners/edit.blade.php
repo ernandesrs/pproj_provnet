@@ -78,6 +78,10 @@ if ($bannerElement) {
                                     <div class="py-3 text-right">
                                         <div class="row justify-content-center">
                                             <div class="col-12 col-md-11 col-lg-10">
+                                                <a class="btn btn-sm btn-info jsAddButtonsModal"
+                                                    data-action="{{ route('admin.banners.storeButton', ['bannerElement' => $element->id]) }}">
+                                                    {{ icon('plus.plusLg') }} {{ __('Adicionar botões/links') }}
+                                                </a>
                                                 <a class="btn btn-sm btn-info"
                                                     href="{{ route('admin.banners.editElement', ['banner' => $banner->id, 'bannerElement' => $element->id]) }}">
                                                     {{ icon('edit') }} {{ __('Editar') }}
@@ -199,8 +203,8 @@ if ($bannerElement) {
 
                         <div class="text-right py-3 py-md-3">
                             @if ($bannerElement ?? false)
-                                <button class="btn btn-sm btn-outline-danger jsButtonConfirm" type="submit" data-type="danger"
-                                    data-title="Excluindo elemento de banner!"
+                                <button class="btn btn-sm btn-outline-danger jsButtonConfirm" type="submit"
+                                    data-type="danger" data-title="Excluindo elemento de banner!"
                                     data-message="Você está excluindo o elemento de banner '<strong>{{ $bannerElement->title }}</strong>' e isto não pode ser desfeito! Continuar?"
                                     data-action="{{ route('admin.banners.destroyElement', ['bannerElement' => $bannerElement->id]) }}">
                                     {{ icon('trash') }} {{ __('Excluir') }}
@@ -264,6 +268,10 @@ if ($bannerElement) {
     </section>
 @endsection
 
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('css/admin/previews.css') }}">
+@endsection
+
 @section('scripts')
     <script>
         $("#image1, #image2, #image3").on("change", function(e) {
@@ -280,4 +288,22 @@ if ($bannerElement) {
             $(this).parents().eq(5).find(".jsBannerPreview").append(img[0]);
         });
     </script>
+
+    @if (!empty($banner) && $banner->elements()->count())
+        <script>
+            $("#text").on("keyup", function(e) {
+                $("#buttonPreview").text($(this).val());
+            });
+
+            $("#style").on("change", function(e) {
+                $("#buttonPreview").attr("class", "btn " + $(this).val());
+            });
+        </script>
+    @endif
 @endsection
+
+@if (!empty($banner) && $banner->elements()->count())
+    @section('modals')
+        @include('includes.admin.modal-add-banner-buttons')
+    @endsection
+@endif

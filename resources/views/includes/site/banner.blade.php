@@ -1,9 +1,9 @@
     @php
         $hasBanner = false;
         if ($banner) {
-            $banners = $banner->elements()->get();
+            $bannerElements = $banner->elements()->get();
         
-            if ($banners->count()) {
+            if ($bannerElements->count()) {
                 $hasBanner = true;
             }
         }
@@ -15,11 +15,11 @@
                 <div class="banners splide">
                     <div class="splide__track">
                         <ul class="splide__list">
-                            @foreach ($banners as $banner)
+                            @foreach ($bannerElements as $bannerElement)
                                 @php
-                                    $config = json_decode($banner->config);
-                                    $images = $config->images;
-                                    $buttons = $config->buttons ?? [];
+                                    $config = json_decode($bannerElement->config);
+                                    $images = (array) $config->images;
+                                    $buttons = (array) $config->buttons ?? [];
                                 @endphp
                                 <li class="splide__slide d-flex align-items-center"
                                     data-splide-interval="{{ $config->interval ?? 5000 }}">
@@ -30,7 +30,7 @@
                                                     @foreach ($images as $key => $image)
                                                         <img class="img-fluid animation-{{ $image->type }}"
                                                             src="{{ Storage::url($image->image) }}"
-                                                            alt="{{ $banner->title . ' ' . ($key + 1) }}">
+                                                            alt="{{ $bannerElement->title . ' ' . ($key + 1) }}">
                                                     @endforeach
                                                 </div>
                                             @endif
@@ -38,10 +38,10 @@
                                         <div
                                             class="col-12 col-md-6 d-flex flex-column justify-content-center text-center text-md-left order-md-1">
                                             <h1 class="title">
-                                                {{ $banner->title }}
+                                                {{ $bannerElement->title }}
                                             </h1>
                                             <p class="description">
-                                                {{ $banner->subtitle }}
+                                                {{ $bannerElement->subtitle }}
                                             </p>
                                             @if (count($buttons))
                                                 <div class="buttons">
@@ -72,7 +72,7 @@
                     autoplay: true,
                     perPage: 1,
                     arrows: false,
-                    pagination: {{ $banners->count() > 1 ? 'true' : 'false' }},
+                    pagination: {{ $bannerElements->count() > 1 ? 'true' : 'false' }},
                     speed: 400,
                     breakpoints: {
                         968: {

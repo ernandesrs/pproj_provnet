@@ -51,4 +51,5 @@ mix
     .scripts(['resources/js/auth/scripts.js'], 'public/js/auth/scripts.js')
     /* auth: css */
     .sass('resources/scss/auth/custom.scss', 'public/css/auth/custom.css')
+    .sass('resources/scss/admin/previews.scss', 'public/css/admin/previews.css')
     ;

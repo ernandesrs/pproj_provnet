@@ -1,0 +1,19 @@
+@import "./../../../node_modules/bootstrap/scss/functions";
+
+@import "./../../../node_modules/bootstrap/scss/variables";
+
+@import "./../../../node_modules/bootstrap/scss/mixins";
+
+.btn-preview {
+    @import "./../site/variables";
+
+    @import "../../../node_modules/bootstrap/scss/buttons";
+
+    .btn {
+        border-radius: $border-radius;
+        padding-top: $spacer / 2.5;
+        padding-bottom: $spacer / 2.5;
+        padding-left: $spacer * 1.2;
+        padding-right: $spacer * 1.2;
+    }
+}

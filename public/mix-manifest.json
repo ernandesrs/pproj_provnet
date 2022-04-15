@@ -1,10 +1,11 @@
 {
     "/css/auth/custom.css": "/css/auth/custom.css",
     "/css/site/custom.css": "/css/site/custom.css",
-    "/css/splide.min.css": "/css/splide.min.css",
     "/css/boxicons.css": "/css/boxicons.css",
     "/css/bootstrap-icons.css": "/css/bootstrap-icons.css",
+    "/css/admin/previews.css": "/css/admin/previews.css",
     "/css/admin/custom.css": "/css/admin/custom.css",
+    "/css/splide.min.css": "/css/splide.min.css",
     "/js/jquery.min.js": "/js/jquery.min.js",
     "/js/jquery-ui.min.js": "/js/jquery-ui.min.js",
     "/js/bootstrap.bundle.min.js": "/js/bootstrap.bundle.min.js",

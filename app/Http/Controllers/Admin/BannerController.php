@@ -152,6 +152,33 @@ class BannerController extends AdminController
     }
 
     /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeButton(BannerElement $bannerElement, Request $request)
+    {
+        $validated = Validator::validate($request->only(["text", "link", "style", "target"]), [
+            "text" => ["required"],
+            "link" => ["string"],
+            "style" => Rule::in(['btn-primary', 'btn-outline-primary', 'btn-secondary', 'btn-outline-secondary', 'btn-link']),
+            "target" => Rule::in(['_self', '_blank'])
+        ]);
+
+        if (!$bannerElement->addButton($validated)) {
+            return response()->json([
+                "message" => Message::error("Oops! Houve um erro ao tentar salvar o botão.")->get(),
+            ]);
+        }
+
+        Message::success("Um novo botão foi adicionado ao elemento de banner '<strong>{$bannerElement->title}</strong>'.")->fixed()->flash();
+        return response()->json([
+            "redirect" => route("admin.banners.edit", ["banner" => $bannerElement->banners_id]),
+        ]);
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Banner  $banner
