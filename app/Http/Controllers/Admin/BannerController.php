@@ -159,10 +159,12 @@ class BannerController extends AdminController
      */
     public function storeButton(BannerElement $bannerElement, Request $request)
     {
-        $validated = Validator::validate($request->only(["text", "link", "style", "target"]), [
+        $validated = Validator::validate($request->only(["text", "link", "local", "style", "size", "target"]), [
             "text" => ["required"],
             "link" => ["string"],
+            "local" => Rule::in(["internal", "https", "http"]),
             "style" => Rule::in(['btn-primary', 'btn-outline-primary', 'btn-secondary', 'btn-outline-secondary', 'btn-link']),
+            "size" => Rule::in(['btn', 'btn-sm', 'btn-lg']),
             "target" => Rule::in(['_self', '_blank'])
         ]);
 
@@ -336,6 +338,32 @@ class BannerController extends AdminController
         Message::warning("O elemento de banner foi excluído com sucesso!", "Excluído com sucesso!")->fixed()->flash();
         return response()->json([
             "redirect" => route("admin.banners.edit", ["banner" => $bannerElement->banners_id])
+        ]);
+    }
+
+    /**
+     * @param BannerElement $bannerElement
+     * @param string $buttonId
+     * @return \Illuminate\Http\Response
+     */
+    public function destroyButton(BannerElement $bannerElement, $buttonId)
+    {
+        if (!$bannerElement->hasButton($buttonId)) {
+            Message::warning(__("O botão não existe ou já pode ter sido excluído."))->fixed()->flash();
+            return response()->json([
+                "reload" => true
+            ]);
+        }
+
+        if (!$bannerElement->removeButton($buttonId)) {
+            return response()->json([
+                "message" => Message::error(__("Houve um erro ao tentar remove o botão."))->get()
+            ]);
+        }
+
+        Message::success(__("O botão foi excluído com sucesso."))->fixed()->flash();
+        return response()->json([
+            "reload" => true
         ]);
     }
 

@@ -22,14 +22,25 @@
                                     </div>
                                 </div>
 
-                                <div class="col-12">
+                                <div class="col-12 col-md-8">
                                     <div class="form-group">
                                         <label for="link">{{ __('Link do botão') }}:</label>
                                         <input class="form-control" type="text" name="link" id="link">
                                     </div>
                                 </div>
 
-                                <div class="col-12 col-sm-6">
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group">
+                                        <label for="local">{{ __('Tipo de link') }}</label>
+                                        <select class="form-control" name="local" id="local">
+                                            <option value="internal">Interno</option>
+                                            <option value="https">Externo(https)</option>
+                                            <option value="http">Externo(http)</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-sm-4">
                                     <div class="form-group">
                                         <label for="style">{{ __('Estilo do botão') }}:</label>
                                         <select class="form-control" name="style" id="style">
@@ -40,7 +51,18 @@
                                     </div>
                                 </div>
 
-                                <div class="col-12 col-sm-6">
+                                <div class="col-12 col-sm-3">
+                                    <div class="form-group">
+                                        <label for="size">{{ __('Tamanho') }}:</label>
+                                        <select class="form-control" name="size" id="size">
+                                            <option value="btn">{{ __('Normal') }}</option>
+                                            <option value="btn-lg">{{ __('Grande') }}</option>
+                                            <option value="btn-sm">{{ __('Pequeno') }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-sm-5">
                                     <div class="form-group">
                                         <label for="target">{{ __('Abrir link') }}:</label>
                                         <select class="form-control" name="target" id="target">
@@ -53,8 +75,9 @@
                         </div>
 
                         {{-- preview --}}
-                        <div class="col-12 col-lg-5 col-xl-4 d-flex justify-content-center align-items-center">
-                            <div class="form-group w-100 d-flex flex-column align-items-center bg-light border pt-2 px-3 pb-3">
+                        <div class="col-12 col-lg-5 col-xl-4 d-flex justify-content-center align-items-start">
+                            <div
+                                class="form-group w-100 d-flex flex-column align-items-center bg-light border pt-2 px-3 pb-3">
                                 <label class="align-self-start" for="">{{ __('Preview') }}:</label>
                                 <div class="btn-preview">
                                     <a id="buttonPreview" class="btn btn-primary">{{ __('Button Text') }}</a>

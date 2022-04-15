@@ -50,6 +50,7 @@ if ($bannerElement) {
                                 @php
                                     $config = json_decode($element->config);
                                     $images = $config->images;
+                                    $buttons = (array) $config->buttons ?? [];
                                 @endphp
                                 <div class="tab-pane fade py-3 {{ $key == 0 ? 'show active' : null }}"
                                     id="element{{ $key + 1 }}">
@@ -74,14 +75,52 @@ if ($bannerElement) {
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <div class="col-12 col-md-11 col-lg-10 mt-3">
+                                            <span class="font-weight-medium">{{ __('Botões') }}:</span>
+                                            <div class="d-flex flex-wrap justify-content-center p-3 bg-white border">
+                                                @if (count($buttons))
+                                                    @foreach ($buttons as $button)
+                                                        <div class="dropdown mx-2">
+                                                            <div class="btn-preview py-2 text-center dropdown-toggle"
+                                                                data-toggle="dropdown">
+                                                                <a class="btn {{ $button->style }}">
+                                                                    {{ $button->text }}
+                                                                </a>
+                                                            </div>
+                                                            <div class="dropdown-menu dropdown-menu-right">
+                                                                <div class="d-flex py-1 px-3">
+                                                                    <a
+                                                                        class="btn btn-sm btn-outline-info jsEditButtonModal">
+                                                                        {{ icon('edit') }} {{ __('Editar') }}
+                                                                    </a>
+                                                                    <span class="mx-1"></span>
+                                                                    <a class="btn btn-sm btn-outline-danger jsButtonConfirm"
+                                                                        data-type="danger"
+                                                                        data-title="{{ __('Exclusão de botão') }}"
+                                                                        data-message="{{ __('Você está excluindo o botão "<strong>:buttonName</strong>" e isso não pode ser desfeito! Continuar?', ['buttonName' => $button->text]) }}"
+                                                                        data-action="{{ route('admin.banners.destroyButton', ['bannerElement' => $element->id, 'buttonId' => $button->id]) }}">
+                                                                        {{ icon('trash') }} {{ __('Excluir') }}
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                @else
+                                                    <p class="mb-0 text-center font-weight-medium">
+                                                        Nenhum botão para este elemento de banner
+                                                    </p>
+                                                @endif
+                                            </div>
+                                            <a class="btn btn-sm btn-info jsAddButtonsModal mt-3"
+                                                data-action="{{ route('admin.banners.storeButton', ['bannerElement' => $element->id]) }}">
+                                                {{ icon('plus.plusLg') }} {{ __('Adicionar botões/links') }}
+                                            </a>
+                                        </div>
                                     </div>
                                     <div class="py-3 text-right">
                                         <div class="row justify-content-center">
                                             <div class="col-12 col-md-11 col-lg-10">
-                                                <a class="btn btn-sm btn-info jsAddButtonsModal"
-                                                    data-action="{{ route('admin.banners.storeButton', ['bannerElement' => $element->id]) }}">
-                                                    {{ icon('plus.plusLg') }} {{ __('Adicionar botões/links') }}
-                                                </a>
                                                 <a class="btn btn-sm btn-info"
                                                     href="{{ route('admin.banners.editElement', ['banner' => $banner->id, 'bannerElement' => $element->id]) }}">
                                                     {{ icon('edit') }} {{ __('Editar') }}
@@ -296,7 +335,14 @@ if ($bannerElement) {
             });
 
             $("#style").on("change", function(e) {
-                $("#buttonPreview").attr("class", "btn " + $(this).val());
+                let styles =
+                    "{{ implode(' ', ['btn-primary', 'btn-outline-primary', 'btn-secondary', 'btn-outline-secondary', 'btn-link']) }}";
+                $("#buttonPreview").removeClass(styles).addClass($(this).val());
+            });
+
+            $("#size").on("change", function(e) {
+                let sizes = "{{ implode(' ', ['btn-lg', 'btn-sm']) }}";
+                $("#buttonPreview").removeClass(sizes).addClass($(this).val());
             });
         </script>
     @endif

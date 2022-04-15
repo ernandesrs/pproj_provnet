@@ -46,7 +46,7 @@
                                             @if (count($buttons))
                                                 <div class="buttons">
                                                     @foreach ($buttons as $button)
-                                                        <a class="btn {{ $button->style }}"
+                                                        <a class="btn {{ $button->style . " " . $button->size }}"
                                                             href="{{ $button->link }}"
                                                             target="{{ $button->target }}">{{ $button->text }}</a>
                                                     @endforeach

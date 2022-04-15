@@ -74,13 +74,13 @@ Route::prefix("panel")->group(function () {
 
     Route::post("/banner/update-element/{bannerElement}", [AdminBannerController::class, "updateElement"])
         ->name("admin.banners.updateElement");
-    Route::post('/banner/update-button/{bannerElement}', [AdminBannerController::class, "updateButton"])
+    Route::post('/banner/update-button/{bannerElement}/{buttonId}', [AdminBannerController::class, "updateButton"])
         ->name("admin.banners.updateButton");
 
     Route::post("/banner/destroy/{banner}", [AdminBannerController::class, "destroy"])->name("admin.banners.destroy");
     Route::post("/banner/destroy-element/{bannerElement}", [AdminBannerController::class, "destroyElement"])
         ->name("admin.banners.destroyElement");
-    Route::post("/banner/destroy-button/{bannerElement}", [AdminBannerController::class, "destroyButton"])
+    Route::post("/banner/destroy-button/{bannerElement}/{buttonId}", [AdminBannerController::class, "destroyButton"])
         ->name("admin.banners.destroyButton");
 
     /**
