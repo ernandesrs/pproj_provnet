@@ -8,7 +8,9 @@ return [
     ],
     "arrow" => [
         "chevronDown" => "bi bi-chevron-down",
+        "chevronDownDouble" => "bi bi-chevron-double-down",
         "chevronUp" => "bi bi-chevron-up",
+        "chevronUpDouble" => "bi bi-chevron-double-up",
         "chevronRight" => "bi bi-chevron-right",
         "chevronLeft" => "bi bi-chevron-left",
     ],
@@ -20,6 +22,22 @@ return [
     "plus" => [
         "plus" => "bi bi-plus",
         "plusLg" => "bi bi-plus-lg",
+    ],
+    "phone" => [
+        "telephone" => "bi bi-telephone",
+        "telephoneX" => "bi bi-telephone-x",
+        "telephoneInbound" => "bi bi-telephone-inbound",
+    ],
+    "x" => [
+        "x" => "bi bi-x",
+        "xLg" => "bi bi-x-lg",
+    ],
+    "wifi" => [
+        "wifi" => "bi bi-wifi",
+        "wifiOff" => "bi bi-wifi-off",
+    ],
+    "router" => [
+        "router" => "bi bi-router",
     ],
     "gear" => [
         "gear" => "bi bi-gear",
@@ -53,6 +71,22 @@ return [
     ],
     "spinner" => [
         "spinner" => "bi bi-arrow-clockwise",
+    ],
+    "speed" => [
+        "speed" => "bi bi-speedometer",
+        "speedAlt" => "bi bi-speedometer2",
+    ],
+    "upload" => [
+        "cloudUp" => "bi bi-cloud-arrow-up",
+        "cloudUpAlt" => "bi bi-cloud-upload",
+        "boxUp" => "bi bi-upload",
+        "boxUpAlt" => "bi bi-upload",
+    ],
+    "download" => [
+        "cloudDown" => "bi bi-cloud-arrow-down",
+        "cloudDownAlt" => "bi bi-cloud-download",
+        "boxDown" => "bi bi-box-arrow-down",
+        "boxDownAlt" => "bi bi-box-arrow-down",
     ],
     "bell" => [
         "bell" => "bi bi-bell",

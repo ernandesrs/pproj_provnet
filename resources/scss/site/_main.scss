@@ -3,4 +3,240 @@
     min-height: calc(100vh - $header_height);
     position: relative;
     z-index: 0;
+
+    .section {
+        .section-header {
+            .title {
+                font-family: "Asap Condensed", sans-serif;
+                font-size: 2rem;
+                font-weight: 500;
+                color: $dark;
+                text-transform: uppercase;
+            }
+        }
+
+        &.section-aboutus {
+            background-image: linear-gradient($secondary_dark 50%, $secondary);
+            min-height: 100vh;
+
+            .section-aboutus-list {
+                .section-aboutus-list-item {
+                    background-color: transparent;
+                    cursor: default;
+                    color: $light_light;
+                    transition: $transition-base;
+
+                    .icon-area {
+                        background-color: $white;
+                        width: 125px;
+                        height: 125px;
+
+                        .icon {
+                            color: $secondary_dark;
+                            font-size: 5rem;
+                        }
+                    }
+
+                    .title {
+                        font-family: "Asap Condensed", sans-serif;
+                        font-weight: 500;
+                        font-size: 1.8rem;
+                        text-transform: uppercase;
+                    }
+
+                    article {
+                        font-family: "Ubuntu", sans-serif;
+                        font-weight: 400;
+                    }
+
+                    &:hover {
+                        background-color: $white;
+                        color: $dark_light;
+                        transition: $transition-base;
+
+                        .icon-area {
+                            background-color: $secondary_dark;
+
+                            .icon {
+                                color: $light;
+                            }
+                        }
+
+                        .title {
+                            color: $dark;
+                        }
+                    }
+                }
+            }
+        }
+
+        &.section-plans {
+            background-image: linear-gradient($light_light 50%, $white);
+
+            .section-plans-list {
+                .section-plans-list-item {
+                    cursor: default;
+                    text-align: center;
+                    transition: $transition-base;
+                    border-radius: $spacer / 4;
+
+                    &.featured {
+                        .card-body {
+                            position: relative;
+                            z-index: 2;
+
+                            &::before {
+                                font-family: bootstrap-icons !important;
+                                content: "\f19f";
+                                background-color: $secondary_dark;
+                                width: 28px;
+                                height: 34px;
+                                border-radius: 0 0 $spacer $spacer;
+                                color: $light_light;
+                                position: absolute;
+                                z-index: 3;
+                                top: 0;
+                                right: auto;
+                                transform: translateX(calc(-28px / 2));
+                            }
+                        }
+                    }
+
+                    .title {
+                        font-family: "Asap Condensed", sans-serif;
+                        font-size: 1.2rem;
+                        font-weight: 500;
+                        color: $dark_light;
+                        text-transform: uppercase;
+                        margin-bottom: 0;
+                    }
+
+                    .price {
+                        font-family: "Oswald", sans-serif;
+                        padding: $spacer 0;
+
+                        .currency,
+                        .price {
+                            font-weight: 600;
+                            font-size: 2.5rem;
+                            color: $dark;
+                        }
+
+                        .recurrence {
+                            color: $dark;
+                        }
+                    }
+
+                    .details {
+                        .list-group {
+                            text-align: left;
+
+                            .list-group-item {
+                                background-color: transparent;
+                                font-size: 0.9rem;
+                                border: 0;
+                                cursor: default;
+                                border-radius: 0;
+                                padding: $spacer / 2.5 $spacer;
+
+                                .icon {
+                                    font-size: 1.1rem;
+                                    margin-right: $spacer / 4;
+                                }
+
+                                &:hover {
+                                    background-color: $light;
+                                }
+
+                                .disabled {
+                                    color: $danger;
+                                    text-decoration: line-through;
+                                }
+                            }
+
+                            .more-details {
+                                &:hover {
+                                    background-color: transparent;
+                                }
+
+                                .btn-more-details {
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    background-color: $white;
+                                    border: 1px solid $light_dark;
+                                    width: 40px;
+                                    height: 40px;
+                                    border-radius: 50%;
+                                    box-shadow: $box-shadow;
+                                    color: $dark_light;
+
+                                    .icon {
+                                        margin: 0;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    &:hover {
+                        background-image: linear-gradient($light_light 60%, $white);
+                        transition: $transition-base;
+                        box-shadow: $box-shadow !important;
+                    }
+                }
+            }
+        }
+
+        &.section-clients {
+            background-image: linear-gradient($light 75%, $light_light);
+
+            .section-clients-list {
+                .section-clients-list-item {
+                    margin-top: 100px;
+
+                    .photo {
+                        background-color: $white;
+                        width: 100%;
+                        max-width: 150px;
+                        position: relative;
+                        margin-top: -100px;
+                        padding: $spacer / 2;
+                        box-shadow: $box-shadow-sm;
+                    }
+
+                    .plan-info {
+                        padding-top: $spacer / 2;
+
+                        .name {
+                            color: $dark_light;
+                            font-size: 0.9rem;
+                        }
+
+                        .date {
+                            font-size: 0.675rem;
+                        }
+                    }
+
+                    .name {
+                        padding: $spacer 0;
+                        font-size: 1.2rem;
+                        font-weight: 600;
+                        color: $dark_dark;
+                    }
+
+                    .testimonial {
+                        color: $dark;
+                        font-size: 0.875rem;
+                    }
+                }
+            }
+        }
+
+        &.contact-section {
+            background-image: linear-gradient($secondary_dark 75%, $secondary);
+            min-height: 100vh;
+            color: $light_light;
+        }
+    }
 }

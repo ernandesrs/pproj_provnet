@@ -53,9 +53,6 @@ class BannerElement extends Model
         $config = json_decode($this->config);
         $buttons = (array) $config->buttons;
 
-        if ($this->hasButtonWithText($data["text"]))
-            return false;
-
         $buttons[$buttonId]->text = $data["text"];
         $buttons[$buttonId]->link = empty($data["link"]) ? null : ($data["local"] == "internal" ? $data["link"] : $data["local"] . "://" . $data["link"]);
         $buttons[$buttonId]->local = $data["local"];

@@ -60,7 +60,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="#cover">
+                                <a class="nav-link" href="#contact">
                                     {{ __('Contato') }}
                                 </a>
                             </li>

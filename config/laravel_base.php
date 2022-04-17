@@ -72,53 +72,6 @@ return [
                 ]
             ],
         ],
-        'app' => [
-            'text' => 'App',
-            'items' => [
-                0 => [
-                    'text' => 'Example 1',
-                    'group' => 'example1',
-                    'icon' => 'default',
-                    'items' => [
-                        0 => [
-                            'text' => 'Item 1',
-                            'route' => '',
-                            'targetBlank' => false,
-                            'activeIn' => [''],
-                            'icon' => 'default'
-                        ],
-                        1 => [
-                            'text' => 'Item 2',
-                            'route' => '',
-                            'targetBlank' => false,
-                            'activeIn' => [''],
-                            'icon' => 'default'
-                        ],
-                    ],
-                ],
-                1 => [
-                    'text' => 'Example 2',
-                    'group' => 'example2',
-                    'icon' => 'default',
-                    'items' => [
-                        0 => [
-                            'text' => 'Item 2',
-                            'route' => '',
-                            'targetBlank' => false,
-                            'activeIn' => [''],
-                            'icon' => 'default'
-                        ],
-                        1 => [
-                            'text' => 'Item 3',
-                            'route' => '',
-                            'targetBlank' => false,
-                            'activeIn' => [''],
-                            'icon' => 'default'
-                        ],
-                    ],
-                ],
-            ],
-        ],
         'others' => [
             'text' => "Outros",
             'items' => [
