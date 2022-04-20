@@ -15,6 +15,7 @@
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset("css/bootstrap-icons.css") }}">
     <link href="{{ asset('css/auth/custom.css') }}" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
 </head>
 
 <body>

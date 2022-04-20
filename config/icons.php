@@ -14,6 +14,19 @@ return [
         "chevronRight" => "bi bi-chevron-right",
         "chevronLeft" => "bi bi-chevron-left",
     ],
+    "layers" => [
+        "layers" => "bi bi-layers",
+        "layersFill" => "bi bi-layers-fill",
+        "layersHalf" => "bi bi-layers-half",
+    ],
+    "map" => [
+        "map" => "bi bi-map",
+        "mapFill" => "bi bi-map-fill",
+    ],
+    "tv" => [
+        "tv" => "bi bi-tv",
+        "tvFill" => "bi bi-tv-fill",
+    ],
     "edit" => "bi bi-pencil-square",
     "trash" => "bi bi-trash3",
     "link" => [
