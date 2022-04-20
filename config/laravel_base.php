@@ -36,17 +36,17 @@ return [
                     'icon' => 'tv.tv',
                 ],
                 [
-                    'text' => 'Conheça-nos',
-                    'route' => null,
+                    'text' => 'Seções',
+                    'route' => 'admin.sections.index',
                     'targetBlank' => false,
-                    'activeIn' => [],
+                    'activeIn' => ['admin.sections.index'],
                     'icon' => 'collection.collection',
                 ],
                 [
                     'text' => 'Planos',
-                    'route' => null,
+                    'route' => 'admin.plans.index',
                     'targetBlank' => false,
-                    'activeIn' => [],
+                    'activeIn' => ['admin.plans.index'],
                     'icon' => 'default',
                 ],
                 [

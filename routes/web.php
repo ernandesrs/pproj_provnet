@@ -9,6 +9,8 @@ use App\Http\Controllers\Site\BlogController as SiteBlogController;
 use App\Http\Controllers\Admin\IndexController as AdminIndexController;
 use App\Http\Controllers\Admin\BlogController as AdminBlogController;
 use App\Http\Controllers\Admin\BannerController as AdminBannerController;
+use App\Http\Controllers\Admin\SectionController as AdminSectionController;
+use App\Http\Controllers\Admin\PlanController as AdminPlanController;
 use App\Http\Controllers\Admin\GuideController as AdminGuideController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Auth\AccountController as AuthAccountController;
@@ -85,6 +87,34 @@ Route::prefix("panel")->group(function () {
     Route::post("/banner/destroy-button/{bannerElement}/{buttonId}", [AdminBannerController::class, "destroyButton"])
         ->name("admin.banners.destroyButton");
 
+    /**
+     * Admin Sections Controller
+     */
+    Route::get("/sections", [AdminSectionController::class, "index"])->name("admin.sections.index");
+    Route::post("/sections/filter", [AdminSectionController::class, "filter"])->name("admin.sections.filter");
+
+    Route::get("/section/new", [AdminSectionController::class, "create"])->name("admin.sections.create");
+    Route::post("/section/{section}/new-element", [AdminSectionController::class, "storeElement"])
+        ->name("admin.sections.storeElement");
+
+    Route::get("/section/edit/{section}", [AdminSectionController::class, "edit"])->name("admin.sections.edit");
+    Route::get("/section/edit/{section}/{sectionElement}", [AdminSectionController::class, "editElement"])
+        ->name("admin.sections.editElement");
+
+    /**
+     * Admin Sections Controller
+     */
+    Route::get("/plans", [AdminPlanController::class, "index"])->name("admin.plans.index");
+    Route::get("/plans/filter", [AdminPlanController::class, "filter"])->name("admin.plans.filter");
+    
+    Route::get("/plan/new", [AdminPlanController::class, "create"])->name("admin.plans.create");
+    Route::post("/plan/new", [AdminPlanController::class, "store"])->name("admin.plans.store");
+    
+    Route::get("/plan/edit/{plan}", [AdminPlanController::class, "edit"])->name("admin.plans.edit");
+    Route::post("/plan/update/{plan}", [AdminPlanController::class, "update"])->name("admin.plans.update");
+
+    Route::post("/plan/destroy/{plan}", [AdminPlanController::class, "destroy"])->name("admin.plans.destroy");
+    
     /**
      * Admin Blog Controller
      */
