@@ -36,13 +36,6 @@ return [
                     'icon' => 'tv.tv',
                 ],
                 [
-                    'text' => 'Seções',
-                    'route' => 'admin.sections.index',
-                    'targetBlank' => false,
-                    'activeIn' => ['admin.sections.index'],
-                    'icon' => 'collection.collection',
-                ],
-                [
                     'text' => 'Planos',
                     'route' => 'admin.plans.index',
                     'targetBlank' => false,

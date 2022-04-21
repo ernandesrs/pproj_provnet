@@ -22,27 +22,27 @@ class BannerController extends AdminController
     {
         $banners = Banner::all();
 
-        return view("admin.banners.index", [
+        return view("admin.banners-index", [
             "appPath" => $this->path(null, [
                 "site" => [
                     "name" => "Site",
                     "url" => null
                 ],
                 "banners" => [
-                    "name" => "Banners",
+                    "name" => "Grupo de banners",
                     "url" => route("admin.banners.index")
                 ]
             ]),
 
             "actions" => (object) [
                 "new" => (object) [
-                    "text" => "Novo banner",
+                    "text" => "Novo grupo",
                     "url" => route("admin.banners.create")
                 ],
             ],
 
             "seo" => (object)[
-                "title" => "Lista de banners"
+                "title" => "Grupo de banners"
             ],
 
             "banners" => $banners
@@ -56,7 +56,7 @@ class BannerController extends AdminController
      */
     public function create()
     {
-        return view("admin.banners.edit", [
+        return view("admin.banner-edit", [
             "appPath" => $this->path(null, [
                 "site" => [
                     "name" => "Site",
@@ -67,13 +67,13 @@ class BannerController extends AdminController
                     "url" => route("admin.banners.index")
                 ],
                 "new" => [
-                    "name" => "Novo banner",
+                    "name" => "Novo grupo",
                     "url" => route("admin.banners.create")
                 ]
             ]),
 
             "seo" => (object)[
-                "title" => "Novo banner"
+                "title" => "Novo grupo de banners"
             ],
 
             "pages" => ["site.index", "site.about", "site.contact", "site.blog.index"]
@@ -96,7 +96,7 @@ class BannerController extends AdminController
             ],
             [
                 "page.in" => __("Escolha uma página válida."),
-                "page.unique" => __("Já existe um banner para a página selecionada."),
+                "page.unique" => __("Já existe um grupo de banners para a página selecionada."),
             ]
         );
 
@@ -106,7 +106,7 @@ class BannerController extends AdminController
         $banner->protection = "none";
         $banner->save();
 
-        Message::success("Novo banner '<strong>{$banner->name}</strong>' cadastrado com sucesso! Agora adicione elementos ao banner.")->fixed()->flash();
+        Message::success("Novo grupo de banners '<strong>{$banner->name}</strong>' cadastrado com sucesso! Agora adicione banners ao grupo.")->fixed()->flash();
         return response()->json([
             "redirect" => route("admin.banners.edit", ["banner" => $banner->id])
         ]);
@@ -145,7 +145,7 @@ class BannerController extends AdminController
             return;
         }
 
-        Message::success("Um novo elemento para o banner foi adicionado com sucesso!", "Novo elemento criado!")->fixed()->flash();
+        Message::success("Um novo banner foi adicionado ao grupo com sucesso!")->fixed()->flash();
         return response()->json([
             "redirect" => route("admin.banners.edit", ["banner" => $banner->id]),
         ]);
@@ -174,7 +174,7 @@ class BannerController extends AdminController
             ]);
         }
 
-        Message::success("Um novo botão foi adicionado ao elemento de banner '<strong>{$bannerElement->title}</strong>'.")->fixed()->flash();
+        Message::success("Um novo botão foi adicionado ao banner '<strong>{$bannerElement->title}</strong>'.")->fixed()->flash();
         return response()->json([
             "redirect" => route("admin.banners.edit", ["banner" => $bannerElement->banners_id]),
         ]);
@@ -188,7 +188,7 @@ class BannerController extends AdminController
      */
     public function edit(Banner $banner)
     {
-        return view("admin.banners.edit", [
+        return view("admin.banner-edit", [
             "appPath" => $this->path(null, [
                 "site" => [
                     "name" => "Site",
@@ -199,13 +199,13 @@ class BannerController extends AdminController
                     "url" => route("admin.banners.index")
                 ],
                 "new" => [
-                    "name" => "Editar banner",
+                    "name" => "Editar grupo",
                     "url" => route("admin.banners.edit", ["banner" => $banner->id])
                 ]
             ]),
 
             "seo" => (object)[
-                "title" => "Editar banner " . $banner->name
+                "title" => "Editar grupo de banner " . $banner->name
             ],
 
             "banner" => $banner
@@ -221,7 +221,7 @@ class BannerController extends AdminController
      */
     public function editElement(Banner $banner, BannerElement $bannerElement)
     {
-        return view("admin.banners.edit", [
+        return view("admin.banner-edit", [
             "appPath" => $this->path(null, [
                 "site" => [
                     "name" => "Site",
@@ -232,11 +232,11 @@ class BannerController extends AdminController
                     "url" => route("admin.banners.index")
                 ],
                 "edit" => [
-                    "name" => "Editar banner",
+                    "name" => "Editar grupo",
                     "url" => route("admin.banners.edit", ["banner" => $banner->id])
                 ],
                 "editElement" => [
-                    "name" => "Editar elemento de banner",
+                    "name" => "Editar banner",
                     "url" => route("admin.banners.editElement", ["banner" => $banner->id, "bannerElement" => $bannerElement->id])
                 ]
             ]),
@@ -283,6 +283,7 @@ class BannerController extends AdminController
     public function update(Request $request, Banner $banner)
     {
     }
+
     /**
      * Update the specified resource in storage.
      *
@@ -303,7 +304,7 @@ class BannerController extends AdminController
 
         $bannerElement->save();
 
-        Message::info("O elemento de banner foi atualizado com sucesso!")->fixed()->flash();
+        Message::info("O banner foi atualizado com sucesso!")->fixed()->flash();
         return response()->json([
             "redirect" => route("admin.banners.edit", ["banner" => $bannerElement->banners_id])
         ]);
@@ -354,7 +355,7 @@ class BannerController extends AdminController
     {
         if ($banner->isSystemBanner()) {
             return response()->json([
-                "message" => Message::warning("Este é um banner padrão e não pode ser excluído.", "Banner protegido")->get()
+                "message" => Message::warning("Este é um grupo de banners padrão e não pode ser excluído.", "Banner protegido")->get()
             ]);
         }
 
@@ -371,7 +372,7 @@ class BannerController extends AdminController
         $bannerName = $banner->name;
         $banner->delete();
 
-        Message::warning("O banner '<strong>{$bannerName}</strong>' e todos seus elementos foram excluídos com sucesso!", "Banner excluído!")->fixed()->flash();
+        Message::warning("O grupo de banners '<strong>{$bannerName}</strong>' e todos seus banners foram excluídos com sucesso!")->fixed()->flash();
         return response()->json([
             "redirect" => route("admin.banners.index")
         ]);
@@ -393,7 +394,7 @@ class BannerController extends AdminController
 
         $bannerElement->delete();
 
-        Message::warning("O elemento de banner foi excluído com sucesso!", "Excluído com sucesso!")->fixed()->flash();
+        Message::warning("O banner foi excluído com sucesso!")->fixed()->flash();
         return response()->json([
             "redirect" => route("admin.banners.edit", ["banner" => $bannerElement->banners_id])
         ]);
@@ -415,7 +416,7 @@ class BannerController extends AdminController
 
         if (!$bannerElement->removeButton($buttonId)) {
             return response()->json([
-                "message" => Message::error(__("Houve um erro ao tentar remove o botão."))->get()
+                "message" => Message::error(__("Houve um erro ao tentar excluir o botão."))->get()
             ]);
         }
 

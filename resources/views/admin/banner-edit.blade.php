@@ -17,14 +17,14 @@ if ($bannerElement) {
             {{-- botões --}}
             <div class="d-flex align-items-center mb-3 py-3 border-bottom">
                 <h2 class="h5 mb-0">
-                    Elementos de banner cadastrados
+                    Banners cadastrados
                 </h2>
                 <a class="ml-3 btn btn-success btn-sm" href="#newbannerelement">
-                    {{ icon('plus.plusLg') }} {{ __('Novo elemento') }}
+                    {{ icon('plus.plusLg') }} {{ __('Novo banner') }}
                 </a>
                 <a class="ml-3 btn btn-danger btn-sm jsButtonConfirm" role="button" data-type="danger"
-                    data-title="Exclusão de banner!"
-                    data-message="Você está excluindo definitivamente o banner '<strong>{{ $banner->name }}</strong>' e todos seus elementos e isso não pode ser desfeito! Continuar?"
+                    data-title="Excluindo grupo de banner!"
+                    data-message="Você está excluindo definitivamente o grupo de banner '<strong>{{ $banner->name }}</strong>' e todos seus banners, e isso não pode ser desfeito! Continuar?"
                     data-action="{{ route('admin.banners.destroy', ['banner' => $banner->id]) }}">
                     {{ icon('trash') }} {{ __('Excluir') }}
                 </a>
@@ -78,7 +78,8 @@ if ($bannerElement) {
 
                                         <div class="col-12 col-md-11 col-lg-10 mt-3 px-0">
                                             <span class="font-weight-medium">{{ __('Botões') }}:</span>
-                                            <div class="d-flex flex-wrap justify-content-center py-3 px-0 bg-white border" style="position: relative;">
+                                            <div class="d-flex flex-wrap justify-content-center py-3 px-0 bg-white border"
+                                                style="position: relative;">
                                                 @if (count($buttons))
                                                     @foreach ($buttons as $button)
                                                         <div class="dropdown mx-2">
@@ -108,7 +109,7 @@ if ($bannerElement) {
                                                     @endforeach
                                                 @else
                                                     <p class="mb-0 text-center font-weight-medium">
-                                                        Nenhum botão para este elemento de banner
+                                                        Nenhum botão para este banner
                                                     </p>
                                                 @endif
                                             </div>
@@ -128,8 +129,8 @@ if ($bannerElement) {
                                                 </a>
                                                 <span class="mx-2"></span>
                                                 <a class="btn btn-sm btn-danger jsButtonConfirm" data-type="danger"
-                                                    data-title="{{ __('Exclusão de elemento de banner!') }}"
-                                                    data-message="Você está excluindo o elemento de banner '<strong>{{ $element->title }}</strong>' e isto não pode ser desfeito! Continuar?"
+                                                    data-title="{{ __('Excluindo banner!') }}"
+                                                    data-message="Você está excluindo o banner '<strong>{{ $element->title }}</strong>' e isto não pode ser desfeito! Continuar?"
                                                     data-action="{{ route('admin.banners.destroyElement', ['bannerElement' => $element->id]) }}">
                                                     {{ icon('trash') }} {{ __('Excluir') }}
                                                 </a>
@@ -143,7 +144,7 @@ if ($bannerElement) {
                 </div>
             @else
                 <div class="alert alert-secondary text-center">
-                    Nenhum elemento de banner cadastrado ainda.
+                    Nenhum banner cadastrado ainda para este grupo.
                 </div>
             @endif
         </section>
@@ -157,9 +158,9 @@ if ($bannerElement) {
                 <h2 class="h5 mb-0">
                     @if (empty($bannerElement))
                         <span id="newbannerelement"></span>
-                        {{ __('Cadastrar novos elementos de banner') }}
+                        {{ __('Cadastrar novos banners') }}
                     @else
-                        {{ __('Editando elemento de banner') }}
+                        {{ __('Editando banner') }}
                     @endif
                 </h2>
             </div>
@@ -212,7 +213,7 @@ if ($bannerElement) {
                                     <div class="alert alert-secondary">
                                         <small>
                                             <p class="font-weight-medium mb-0">
-                                                Você pode inserir até 3 imagens para um elemento de banner.
+                                                {{ __('Você pode inserir até 3 imagens para um banner.') }}
                                             </p>
                                             <ul>
                                                 <li><span class="font-weight-medium">Imagem 1:</span> será o background</li>
@@ -245,8 +246,8 @@ if ($bannerElement) {
                         <div class="text-right py-3 py-md-3">
                             @if ($bannerElement ?? false)
                                 <button class="btn btn-sm btn-outline-danger jsButtonConfirm" type="submit"
-                                    data-type="danger" data-title="Excluindo elemento de banner!"
-                                    data-message="Você está excluindo o elemento de banner '<strong>{{ $bannerElement->title }}</strong>' e isto não pode ser desfeito! Continuar?"
+                                    data-type="danger" data-title="Excluindo banner!"
+                                    data-message="Você está excluindo um banner '<strong>{{ $bannerElement->title }}</strong>' e isto não pode ser desfeito! Continuar?"
                                     data-action="{{ route('admin.banners.destroyElement', ['bannerElement' => $bannerElement->id]) }}">
                                     {{ icon('trash') }} {{ __('Excluir') }}
                                 </button>
@@ -273,7 +274,7 @@ if ($bannerElement) {
 
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
-                                    <label for="page">Banner para:</label>
+                                    <label for="page">Grupo de banner para:</label>
                                     <select class="form-control" name="page" id="page">
                                         <option value="none">Escolha uma página</option>
                                         @foreach ($pages as $page)
@@ -281,17 +282,17 @@ if ($bannerElement) {
                                         @endforeach
                                     </select>
                                     <small class="form-text text-muted">
-                                        {{ __('Uma página onde o banner será exibido.') }}
+                                        {{ __('Uma página onde os banners serão exibidos.') }}
                                     </small>
                                 </div>
                             </div>
 
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
-                                    <label for="name">Nome/Título:</label>
+                                    <label for="name">{{ __('Nome') }}:</label>
                                     <input type="text" class="form-control" name="name" id="name">
                                     <small class="form-text text-muted">
-                                        {{ __('Uma identificação para o banner que não será mostrada no front.') }}
+                                        {{ __('Uma identificação para o grupo de banner(não será mostrada no front).') }}
                                     </small>
                                 </div>
                             </div>
