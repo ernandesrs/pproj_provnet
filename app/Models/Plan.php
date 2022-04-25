@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Plan extends Model
 {
+    public const CATEGORY_FIBER = 'fiber';
+    public const CATEGORY_RADIO = 'radio';
+    public const CATEGORY_CUSTOM = 'custom';
     public const ALLOWED_RECURRENCES = [1, 2, 3, 6, 12];
     public const ALLOWED_CATEGORIES = ['fiber', 'radio', 'custom'];
 

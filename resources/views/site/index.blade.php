@@ -5,6 +5,21 @@
 @endsection
 
 @section('content')
+    @php
+    $recurrencesText = [
+        1 => 'Mês',
+        2 => 'Bimestre',
+        3 => 'Trimestre',
+        6 => 'Semestre',
+        12 => 'Anual',
+    ];
+    $categoriesText = [
+        'fiber' => 'Fibra',
+        'radio' => 'Rádio',
+        'custom' => 'Personalizado',
+    ];
+    @endphp
+
     {{-- abouts --}}
     <section id="aboutus" class="d-flex align-items-center section section-aboutus">
         <div class="container">
@@ -56,19 +71,16 @@
                     @endphp
                     @foreach ($plans as $key => $plan)
                         @php
-                            $plansCategory = [
-                                'fiber' => 'Fibra',
-                                'radio' => 'Rádio',
-                                'enterprise' => 'Empresarial',
-                            ];
                             $i++;
                         @endphp
-                        <li class="nav-item">
-                            <a class="nav-link {{ $i == 1 ? 'active' : null }}" id="plans-{{ $key }}-tab"
-                                data-toggle="pill" href="#plans-{{ $key }}">
-                                {{ $plansCategory[$key] }}
-                            </a>
-                        </li>
+                        @if (count($plan ?? []) && count($plans) > 1)
+                            <li class="nav-item">
+                                <a class="nav-link {{ $i == 1 ? 'active' : null }}" id="plans-{{ $key }}-tab"
+                                    data-toggle="pill" href="#plans-{{ $key }}">
+                                    {{ $categoriesText[$key] }}
+                                </a>
+                            </li>
+                        @endif
                     @endforeach
                 </ul>
             </div>
@@ -85,6 +97,9 @@
                         <div class="tab-pane fade {{ $i == 1 ? 'show active' : null }}" id="plans-{{ $key }}">
                             <div class="row justify-content-center section-plans-list">
                                 @foreach ($plan as $key => $p)
+                                    @php
+                                        $p->content = json_decode($p->content);
+                                    @endphp
                                     <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
                                         <div
                                             class="card shadow-sm border-0 section-plans-list-item {{ $key == 1 ? 'featured' : null }}">
@@ -100,7 +115,7 @@
                                                         {{ $p->price }}
                                                     </span>
                                                     <span class="recurrence">
-                                                        /{{ $p->recurrence == 'monthly' ? __('mês') : ($p->recurrence == 'semiannual' ? __('ano') : __('semestre')) }}
+                                                        /{{ Str::lower($recurrencesText[$p->recurrence] ?? 'undefined') }}
                                                     </span>
                                                 </div>
                                                 <div class="details">
@@ -108,33 +123,33 @@
                                                         <li class="list-group-item">
                                                             {{ icon('download.cloudDownAlt') }}
                                                             <span>
-                                                                Download: {{ $p->download_speed }} Mbps
+                                                                Download: {{ $p->content->download_speed }} Mbps
                                                             </span>
                                                         </li>
                                                         <li class="list-group-item">
                                                             {{ icon('upload.cloudUpAlt') }}
                                                             <span>
-                                                                Upload: {{ $p->upload_speed }} Mbps
+                                                                Upload: {{ $p->content->upload_speed }} Mbps
                                                             </span>
                                                         </li>
                                                         <li class="list-group-item">
                                                             {{ icon('speed.speed') }}
                                                             <span>
-                                                                {{ $p->limit ? __('Limitada: :limit', ['limit' => $p->limit]) : __('Sem limites') }}
+                                                                {{ $p->content->limit ? __('Limitada: :limit', ['limit' => $p->content->limit]) : __('Sem limites') }}
                                                             </span>
                                                         </li>
                                                         <li class="list-group-item">
-                                                            @if ($p->telephone_line)
+                                                            @if ($p->content->telephone_line)
                                                                 {{ icon('phone.telephone') }}
                                                             @else
                                                                 {{ icon('phone.telephoneX') }}
                                                             @endif
                                                             <span>
-                                                                {{ $p->telephone_line ? __('Necessário linha telefônica') : __('Sem linha telefônica') }}
+                                                                {{ $p->content->telephone_line ? __('Necessário linha telefônica') : __('Sem linha telefônica') }}
                                                             </span>
                                                         </li>
                                                         <li class="list-group-item">
-                                                            @if ($p->free_router)
+                                                            @if ($p->content->free_router)
                                                                 {{ icon('router.router') }}
                                                                 <span>
                                                                     {{ __('Roteador grátis') }}
@@ -147,7 +162,7 @@
                                                             @endif
                                                         </li>
                                                         @php
-                                                            $moreDetails = json_decode($p->content);
+                                                            $moreDetails = $p->content->details ?? [];
                                                         @endphp
                                                         @if (count($moreDetails))
                                                             <li

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Mail\ContactMessageMail;
 use App\Models\Banner;
 use App\Models\ContactMessage;
+use App\Models\Plan;
 use App\Models\User;
 use App\Notifications\ContactMessageReceivedNotification;
 use App\Support\Message;
@@ -20,6 +21,11 @@ class IndexController extends Controller
     public function index()
     {
         $banner = Banner::where("route_name", Route::currentRouteName())->get()->first();
+        $plans = [
+            "fiber" => Plan::where("category", Plan::CATEGORY_FIBER)->whereNotNull("published")->get(),
+            "radio" => Plan::where("category", Plan::CATEGORY_RADIO)->whereNotNull("published")->get(),
+            "custom" => Plan::where("category", Plan::CATEGORY_CUSTOM)->whereNotNull("published")->get()
+        ];
 
         return view("site.index", [
             "appPath" => $this->path(),
@@ -55,118 +61,7 @@ class IndexController extends Controller
                     ],
                 ],
             ],
-            "plans" => [
-                "fiber" => [
-                    (object) [
-                        "id" => 1,
-                        "title" => "Plano 75 Mb",
-                        "price" => 50,
-                        "recurrence" => "monthly",
-                        "download_speed" => 75,
-                        "upload_speed" => 32.5,
-                        "limit" => '750 GB',
-                        "telephone_line" => false,
-                        "free_router" => false,
-                        "content" => json_encode([
-                            [
-                                "text" => "Item 1",
-                                "icon" => null,
-                            ],
-                        ]),
-                    ],
-                    (object) [
-                        "id" => 2,
-                        "title" => "Plano 150 Mb",
-                        "price" => 100,
-                        "recurrence" => "monthly",
-                        "download_speed" => 150,
-                        "upload_speed" => 75,
-                        "limit" => null,
-                        "telephone_line" => false,
-                        "free_router" => true,
-                        "content" => json_encode([
-                            [
-                                "text" => "Item 1",
-                                "icon" => null,
-                            ],
-                            [
-                                "text" => "Item 2",
-                                "icon" => null,
-                            ],
-                        ]),
-                    ],
-                    (object) [
-                        "id" => 3,
-                        "title" => "Plano 300 Mb",
-                        "price" => 150,
-                        "recurrence" => "monthly",
-                        "download_speed" => 300,
-                        "upload_speed" => 150,
-                        "limit" => null,
-                        "telephone_line" => false,
-                        "free_router" => true,
-                        "content" => json_encode([
-                            [
-                                "text" => "Item 1",
-                                "icon" => null,
-                            ],
-                        ]),
-                    ],
-                ],
-                "radio" => [
-                    (object) [
-                        "id" => 1,
-                        "title" => "Plano 25 Mb",
-                        "price" => 50,
-                        "recurrence" => "monthly",
-                        "download_speed" => 25,
-                        "upload_speed" => 12.5,
-                        "limit" => '250 GB',
-                        "telephone_line" => false,
-                        "free_router" => false,
-                        "content" => json_encode([
-                            [
-                                "text" => "Item 1",
-                                "icon" => null,
-                            ],
-                        ]),
-                    ],
-                    (object) [
-                        "id" => 2,
-                        "title" => "Plano 50 Mb",
-                        "price" => 100,
-                        "recurrence" => "monthly",
-                        "download_speed" => 50,
-                        "upload_speed" => 25,
-                        "limit" => "750 GB",
-                        "telephone_line" => false,
-                        "free_router" => false,
-                        "content" => json_encode([
-                            [
-                                "text" => "",
-                                "icon" => null
-                            ]
-                        ]),
-                    ],
-                    (object) [
-                        "id" => 3,
-                        "title" => "Plano 100 Mb",
-                        "price" => 150,
-                        "recurrence" => "monthly",
-                        "download_speed" => 100,
-                        "upload_speed" => 75,
-                        "limit" => "1,750 TB",
-                        "telephone_line" => false,
-                        "free_router" => true,
-                        "content" => json_encode([
-                            [
-                                "text" => "Item 1",
-                                "icon" => null,
-                            ],
-                        ]),
-                    ],
-                ],
-            ],
+            "plans" => $plans,
             "clients" => [
                 (object) [
                     "planInfo" => (object)[
