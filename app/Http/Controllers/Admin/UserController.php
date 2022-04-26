@@ -35,7 +35,7 @@ class UserController extends AdminController
             }
         }
 
-        return view("admin.users.index", [
+        return view("admin.users-index", [
             "appPath" => $this->path(null, [
                 "dashboard" => [
                     "name" => "dashboard",
@@ -105,7 +105,7 @@ class UserController extends AdminController
             return back();
         }
 
-        return view("admin.users.edit", [
+        return view("admin.user-edit", [
             "appPath" => $this->path(null, [
                 "dashboard" => [
                     "name" => "dashboard",
