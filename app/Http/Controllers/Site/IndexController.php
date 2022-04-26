@@ -30,10 +30,11 @@ class IndexController extends Controller
         return view("site.index", [
             "appPath" => $this->path(),
             "head" => (new Seo())->render(
-                config("app.name") . " | " . __("site.index.title"),
-                __("site.index.subtitle"),
+                config("app.name") . " | " . $this->settings->title,
+                $this->settings->description,
                 route("site.index")
             ),
+            "settings" => $this->settings,
             "banner" => $banner,
             "aboutus" => [
                 (object) [

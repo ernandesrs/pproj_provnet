@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\IndexController as AdminIndexController;
 use App\Http\Controllers\Admin\BlogController as AdminBlogController;
 use App\Http\Controllers\Admin\BannerController as AdminBannerController;
 use App\Http\Controllers\Admin\PlanController as AdminPlanController;
+use App\Http\Controllers\Admin\SettingController as AdminSettingController;
 use App\Http\Controllers\Admin\GuideController as AdminGuideController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Auth\AccountController as AuthAccountController;
@@ -99,6 +100,12 @@ Route::prefix("panel")->group(function () {
     Route::post("/plan/update/{plan}", [AdminPlanController::class, "update"])->name("admin.plans.update");
 
     Route::post("/plan/destroy/{plan}", [AdminPlanController::class, "destroy"])->name("admin.plans.destroy");
+
+    /**
+     * Admin Settings Controller
+     */
+    Route::get("/settings", [AdminSettingController::class, "index"])->name("admin.settings.index");
+    Route::post("/settings/update", [AdminSettingController::class, "update"])->name("admin.settings.update");
     
     /**
      * Admin Blog Controller
