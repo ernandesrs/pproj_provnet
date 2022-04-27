@@ -105,7 +105,7 @@ Route::prefix("panel")->group(function () {
      * Admin Settings Controller
      */
     Route::get("/settings", [AdminSettingController::class, "index"])->name("admin.settings.index");
-    Route::post("/settings/update", [AdminSettingController::class, "update"])->name("admin.settings.update");
+    Route::post("/settings/update/{setting}", [AdminSettingController::class, "update"])->name("admin.settings.update");
     
     /**
      * Admin Blog Controller

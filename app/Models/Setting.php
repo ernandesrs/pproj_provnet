@@ -17,12 +17,19 @@ class Setting extends Model
      */
     public function init(): Setting
     {
-        copy(resource_path("img/favicon.ico"), public_path("img/site/favicon.ico"));
-        copy(resource_path("img/logo.png"), public_path("img/site/logo.png"));
+        foreach (["site", "admin"] as $dir) {
+            $path = storage_path("/app/public/images/{$dir}");
+            if (!is_dir($path)) {
+                mkdir($path);
+            }
+        }
+
+        copy(resource_path("img/favicon.svg"), storage_path("app/public/images/site/favicon.svg"));
+        copy(resource_path("img/logo.svg"), storage_path("app/public/images/site/logo.svg"));
 
         $settings = [
-            "logo" => "img/site/logo.png",
-            "favicon" => "img/site/favicon.png",
+            "logo" => "images/site/logo.svg",
+            "favicon" => "images/site/favicon.svg",
             "title" => "Lorem ipsum dolor sit amet consectetur",
             "description" => "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit doloribus obcaecati aperiam rem voluptatem natus atque inventore facere fuga sint, ducimus quae nesciunt tempore quas porro quis recusandae?",
         ];

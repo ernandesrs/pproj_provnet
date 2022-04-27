@@ -62,11 +62,11 @@
             alertModel.addClass("fixed-alert");
 
         if (message.title)
-            alertModel.find(".alert-heading").text(message.title);
+            alertModel.find(".alert-heading").html(message.title);
         else
             alertModel.find(".alert-heading").remove();
 
-        alertModel.find(".alert-message").text(message.message);
+        alertModel.find(".alert-message").html(message.message);
 
         messageContainer.html(alertModel);
 

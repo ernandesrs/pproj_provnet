@@ -5,7 +5,7 @@
     $settings->settings = json_decode($settings->settings);
     @endphp
     <section class="py-4 section section-list">
-        <form action="{{ route('admin.settings.update', ['settings' => $settings->id]) }}" class="jsFormSubmit">
+        <form class="jsFormSubmit" action="{{ route('admin.settings.update', ['setting' => $settings->id]) }}" method="POST" enctype="multipart/form-data">
             <div class="jsMessageArea"></div>
 
             <div class="card">
@@ -29,12 +29,18 @@
                         <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <label for="logo">{{ __('Logo') }}:</label>
+                                <div class="p-2 border d-flex justify-content-center mb-3" style="height: 75px">
+                                    <img src="{{ Storage::url($settings->settings->logo) }}" alt="">
+                                </div>
                                 <input class="form-control" type="file" name="logo">
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <label for="favicon">{{ __('Favicon') }}:</label>
+                                <div class="p-2 border d-flex justify-content-center mb-3" style="height: 75px">
+                                    <img src="{{ Storage::url($settings->settings->favicon) }}" alt="">
+                                </div>
                                 <input class="form-control" type="file" name="favicon">
                             </div>
                         </div>

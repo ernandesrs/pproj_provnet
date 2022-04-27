@@ -14,7 +14,7 @@
     <link href="{{ asset('css/bootstrap-icons.css') }}" rel="stylesheet">
     <link href="{{ asset('css/site/custom.css') }}" rel="stylesheet">
 
-    <link rel="shortcut icon" href="{{ asset($settings->favicon) }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ Storage::url($settings->favicon) }}" type="image/x-icon">
 
     @yield("styles")
 </head>
@@ -27,7 +27,7 @@
                 <nav class="navbar navbar-expand-lg navbar-light w-100">
                     <a class="navbar-brand" href="{{ route('site.index') }}">
                         <span class="sr-only">{{ config('app.name') }}</span>
-                        <img src="{{ asset($settings->logo) }}" alt="{{ config('app.name') }}">
+                        <img src="{{ Storage::url($settings->logo) }}" alt="{{ config('app.name') }}">
                     </a>
 
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#headerNavigation"
